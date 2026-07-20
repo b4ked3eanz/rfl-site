@@ -2449,22 +2449,17 @@
       const ZW=567, ZH=316, PITCH=10.6, TILT=26*Math.PI/180, KZ=1/Math.cos(TILT);
       const COLS=Math.round(ZW/PITCH), ROWS=Math.ceil(ZH/PITCH)+2, N=COLS*ROWS;
       const CW=PITCH-0.18, CD=PITCH*KZ-0.18, CH=26;
-      // The camera is orthographic with setSize(ZW,ZH), so 1 world unit == 1 CSS px exactly.
-      // That makes the CW/CD gap a 0.18 PIXEL gap: the "outline" was never a drawn line, just a
-      // sub-pixel antialiasing artifact of two tiles almost touching, which is why the squares
-      // barely read at idle. EDGE_W draws a real inset rim on each tile instead.
-      const EDGE_W=0.75, EDGE_AA=0.5;   // rim thickness / feather, in px
       const MAXT=64, SPEED=105, FREQ=0.0686, WIDTH=52.5, FADE=2.0, AMP=15, MAXH=15, JIT=3.5, SPACING=3.0;
 
       const VERT_HEAD=
-        "varying float vHeight; varying vec2 vOff; varying vec3 vLocal;\n"+
+        "varying float vHeight; varying vec2 vOff; varying vec3 vNrm;\n"+
         "attribute vec2 aOffset;\n"+
         "uniform sampler2D uTrailTexture; uniform int uTrailCount;\n"+
         "uniform float uWaveSpeed,uWaveFreq,uWaveWidth,uFadeTime,uAmplitude,uJitter,uMaxHeight,uTimeV;\n"+
         "vec2 hash2(vec2 p){ p=vec2(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3)));\n"+
         "  return fract(sin(p)*43758.5453123)-0.5; }";
       const VERT_BODY=
-        "vHeight=0.0; vOff=aOffset; vLocal=position;\n"+
+        "vHeight=0.0; vOff=aOffset; vNrm=normal;\n"+
         "if(position.y>0.0){\n"+
         "  vec2 worldXZ=aOffset+hash2(aOffset)*uJitter;\n"+
         "  float waveHeight=0.0, totalWeight=0.0;\n"+
@@ -2482,14 +2477,14 @@
         "  }\n"+
         "  waveHeight/=max(totalWeight,1.0);\n"+
         "  float dsp=clamp(waveHeight*uAmplitude,-uMaxHeight,uMaxHeight);\n"+
-        "  float breath=sin(worldXZ.x*0.021+worldXZ.y*0.015+uTimeV*0.75)*1.6\n"+
-        "             + sin(worldXZ.x*0.009-worldXZ.y*0.013+uTimeV*0.51)*1.1;\n"+
+        "  float breath=sin(worldXZ.x*0.021+worldXZ.y*0.015+uTimeV*0.75)*3.1\n"+
+        "             + sin(worldXZ.x*0.009-worldXZ.y*0.013+uTimeV*0.51)*2.1;\n"+
         "  transformed.y+=dsp+breath; vHeight=dsp;\n"+
         "}";
       const FRAG_HEAD=
         "varying float vHeight; varying vec2 vOff;\n"+
-        "varying vec3 vLocal;\n"+
-        "uniform vec3 uColorBase,uColorHigh; uniform float uMaxHeight,uTime,uGlow,uTintPow,uDepth,uEdge; uniform int uMode;\n"+
+        "varying vec3 vNrm;\n"+
+        "uniform vec3 uColorBase,uColorHigh; uniform float uMaxHeight,uTime,uGlow,uTintPow,uDepth,uSide; uniform int uMode;\n"+
         "vec3 hsv2rgb(vec3 c){ vec4 K=vec4(1.,2./3.,1./3.,3.);\n"+
         "  vec3 pp=abs(fract(c.xxx+K.xyz)*6.-K.www);\n"+
         "  return c.z*mix(K.xxx,clamp(pp-K.xxx,0.,1.),c.y); }";
@@ -2502,9 +2497,12 @@
         // separating a depression from the flat grid was the lighting on its tilted normals —
         // hence the washed, low-contrast depth. tD is the other half: 0 at rest, 1 at deepest.
         "float tD=pow(clamp(-vHeight/uMaxHeight,0.0,1.0),0.85);\n"+
-        // px from this fragment to the tile border, on the tile's own local axes
-        "float dE=min("+(CW*0.5).toFixed(3)+"-abs(vLocal.x), "+(CD*0.5).toFixed(3)+"-abs(vLocal.z));\n"+
-        "float rim=1.0-smoothstep("+(EDGE_W-EDGE_AA).toFixed(3)+", "+(EDGE_W+EDGE_AA).toFixed(3)+", dE);\n";
+        // The vertical WALL of each cube - the sliver of its own height that gets exposed as it
+        // rises on the breath/ripple. That wall is what visually separates one square from the
+        // next; the top faces are all the same shade. Object-space normal: y=+-1 on the top and
+        // bottom caps, 0 on every side wall, so `side` isolates exactly the exposed height.
+        // At rest the walls are sub-pixel, so this barely shows - it appears as the cells lift.
+        "float side=1.0-abs(vNrm.y);\n";
       function build(canvas, mode){
         const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
         renderer.setSize(ZW,ZH,false); renderer.setPixelRatio(Math.min(2,window.devicePixelRatio||1));
@@ -2539,7 +2537,7 @@
                   // absolute terms than the #F7F7F7 card — it needs the deeper factor to read
                   // at comparable contrast.
                   uDepth:{value:mode==="rainbow"?0.55:0.40},
-                  uEdge:{value:mode==="rainbow"?0.62:0.34} };
+                  uSide:{value:mode==="rainbow"?0.38:0.28} };
 
         const geo=new THREE.BoxGeometry(CW,CH,CD);
         const off=new Float32Array(N*2);
@@ -2553,7 +2551,7 @@
           sh.fragmentShader=sh.fragmentShader
             .replace("#include <common>","#include <common>\n"+FRAG_HEAD)
             .replace("#include <color_fragment>","#include <color_fragment>\n"+FRAG_CALC+
-              "diffuseColor.rgb=mix(uColorBase*(1.0-tD*uDepth),high,tE)*(1.0-rim*uEdge*(1.0-tE));")
+              "diffuseColor.rgb=mix(uColorBase*(1.0-tD*uDepth),high,tE)*(1.0-side*uSide);")
             .replace("#include <emissivemap_fragment>","#include <emissivemap_fragment>\n"+
               "totalEmissiveRadiance += high*tE*uGlow*0.55;");
         };
