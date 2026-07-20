@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>cnvrt — hero CTA</title>
+<style>
+  @font-face {
+    font-family: 'OffBit'; font-weight: 700; font-style: normal; font-display: swap;
+    src: url('OTF/OffBitTrial-Bold.otf') format('opentype');
+  }
+  * { margin: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  /* jelly-switch easing, reused for the hover morph */
+  :root { --jelly: cubic-bezier(0.82, 0.03, 0, 0.98); }
+
+  html.embed, html.embed body, html.embed .stage { background: transparent !important; }
+  .stage {
+    position: fixed; inset: 0; background: #ffffff; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'OffBit', ui-monospace, monospace;
+    cursor: default;
+  }
+
+  /* transform layers kept separate so GSAP tweens never fight:
+     .magnet = magnetic translate · .wig = idle wiggle rotate · .buzz = haptic scale */
+  .magnet { will-change: transform; }
+  .wig    { will-change: transform; }
+  .buzz   { position: relative; will-change: transform; }
+
+  /* .cta is the rainbow frame; padding opens the 4px ring on hover */
+  .cta {
+    position: relative; padding: 0;
+    transition: padding .5s var(--jelly);
+  }
+  .cta.hot { padding: 4px; }
+
+  /* WebGL rainbow lives behind the button; only the 4px ring shows through on hover */
+  canvas.rainbow {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    border-radius: 24px; opacity: 0; z-index: 0;
+    transition: opacity .4s var(--jelly), border-radius .5s var(--jelly);
+  }
+  .cta.hot canvas.rainbow { opacity: 1; border-radius: 32px; }
+
+  .btn {
+    position: relative; z-index: 1;
+    width: 186px; height: 53px; border-radius: 24px;
+    background: linear-gradient(180deg, #8333E6 0%, #3956FB 100%);
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+    box-shadow: 0 8px 20px rgba(83, 60, 190, .32);
+    transition: width .5s var(--jelly), height .5s var(--jelly),
+                border-radius .5s var(--jelly), box-shadow .5s var(--jelly);
+  }
+  .cta.hot .btn {
+    width: 226px; height: 61px; border-radius: 28px;
+    box-shadow: 0 12px 38px rgba(120, 60, 240, .5),
+                inset 0 0 10px 0.6px rgba(255, 255, 255, .80),  /* Rectangle 869555599 — softer falloff, less edge-concentrated */
+                inset 0 0 5px 0.6px rgba(255, 255, 255, .40);   /* Rectangle 869555600 */
+  }
+
+  .label {
+    position: relative; z-index: 2; color: #fff;
+    font-weight: 700; font-size: 15px; line-height: 1;
+    letter-spacing: 0; text-transform: uppercase; white-space: nowrap;
+    will-change: transform;
+  }
+  .label i { font-style: normal; display: inline-block; transform: skewX(-12deg); }
+
+  /* chat-bubble tail (default only) — exact Figma vector 'Vector 1563', local (6,44), drawn over the bubble corner */
+  .tail {
+    position: absolute; left: 6px; top: 44px; width: 14.55px; height: 12.73px; z-index: 2; overflow: visible;
+    transform-origin: 30% 25%;
+    transition: opacity .35s var(--jelly), transform .35s var(--jelly);
+  }
+  .tail path { fill: #4252F8; }
+  .cta.hot .tail { opacity: 0; transform: scale(.25) translate(-6px, -6px); }
+
+  /* mouse-trail stickers */
+  .sticker {
+    position: fixed; pointer-events: none; z-index: 60; top: 0; left: 0;
+    will-change: transform, opacity;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, .30));
+    -webkit-user-select: none; user-select: none;
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="magnet">
+      <div class="wig">
+        <div class="buzz">
+          <div class="cta" id="cta">
+            <canvas class="rainbow"></canvas>
+            <svg class="tail" viewBox="0 0 14.5455 12.7273" aria-hidden="true"><path d="M0.683324 11.5254C1.88649 9.77986 4.08096 7.03765 3.83376 1.92558C3.79456 1.11496 4.64011 0.501871 5.36599 0.864815L13.7021 5.03287C14.1757 5.26965 14.3869 5.84009 14.0843 6.27456C11.8027 9.5502 4.83875 11.9656 1.37527 12.5765C0.703085 12.695 0.295955 12.0874 0.683324 11.5254Z"/></svg>
+            <div class="btn">
+              <span class="label">1800-LAUNCH-NOW<i>!!!</i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomWiggle.min.js"></script>
+  <script>
+  (function () {
+    if (location.search.indexOf('embed') > -1) document.documentElement.classList.add('embed');
+    gsap.registerPlugin(CustomEase, CustomWiggle);
+
+    const magnet = document.querySelector('.magnet');
+    const wig    = document.querySelector('.wig');
+    const buzz   = document.querySelector('.buzz');
+    const cta    = document.getElementById('cta');
+    const label  = document.querySelector('.label');
+
+    /* ---------- idle wiggle: a short shake, then a rest, on repeat ---------- */
+    gsap.to(wig, { rotation: 8, duration: 1.05, repeat: -1, repeatDelay: 2.8, ease: 'wiggle({ wiggles: 5, type: easeOut })' });
+
+    /* ---------- magnetic pull: hover zone is the whole screen ---------- */
+    const LEAN = 32;                 // px the whole button leans at screen edge
+    const DRIFT = 8.56;              // px the label drifts INSIDE the button (parallax, +7%)
+    window.addEventListener('mousemove', (e) => {
+      const nx = (e.clientX - innerWidth / 2)  / (innerWidth / 2);
+      const ny = (e.clientY - innerHeight / 2) / (innerHeight / 2);
+      gsap.to(magnet, { x: nx * LEAN, y: ny * LEAN, duration: .5, ease: 'power2.out', overwrite: 'auto' });
+      gsap.to(label,  { x: nx * DRIFT, y: ny * DRIFT, duration: .5, ease: 'power2.out', overwrite: 'auto' });
+      // the iframe hitbox swallows pointer events — forward the position so the parent's
+      // chip magnets (and anything else cursor-driven) keep seeing the cursor over us
+      try { parent.postMessage({ t: 'ctaptr', x: e.clientX, y: e.clientY }, '*'); } catch (err) {}
+    });
+    // the parent runs an eased scroller; wheel events inside an iframe never reach it
+    window.addEventListener('wheel', (e) => {
+      try { parent.postMessage({ t: 'ctawheel', dy: e.deltaY, dm: e.deltaMode }, '*'); } catch (err) {}
+    }, { passive: true });
+
+    // cursor leaves the window -> spring home (wiggle keeps running)
+    document.addEventListener('mouseleave', () => {
+      gsap.to(magnet, { x: 0, y: 0, duration: .7, ease: 'elastic.out(1, 0.4)', overwrite: 'auto' });
+      gsap.to(label,  { x: 0, y: 0, duration: .7, ease: 'elastic.out(1, 0.4)', overwrite: 'auto' });
+      try { parent.postMessage({ t: 'ctaptr', gone: true }, '*'); } catch (err) {}
+    });
+
+    /* ---------- tier 2: hovering the button itself ---------- */
+    let buzzTween = null;
+    cta.addEventListener('mouseenter', () => {
+      cta.classList.add('hot');                                   // morph -> rainbow hover look (jelly ease, CSS)
+      try { parent.postMessage({ t: 'cta', hot: true }, '*'); } catch (e) {}
+      if (buzzTween) buzzTween.kill();
+      buzzTween = gsap.fromTo(buzz, { scale: .99 },               // haptic vibrate
+        { scale: 1.03, duration: .08, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+    });
+    cta.addEventListener('mouseleave', () => {
+      cta.classList.remove('hot');
+      try { parent.postMessage({ t: 'cta', hot: false }, '*'); } catch (e) {}
+      if (buzzTween) { buzzTween.kill(); buzzTween = null; }
+      gsap.to(buzz, { scale: 1, duration: .3, ease: 'elastic.out(1, 0.5)' });
+    });
+
+    /* ---------- mouse-trail stickers (emit while moving over the button) ---------- */
+    const ICONS = [
+      'hero-assets/01-cherries.png',  'hero-assets/02-shuttlecock.png',
+      'hero-assets/03-sunflower.png', 'hero-assets/04-folder.png',
+      'hero-assets/05-rocket.png',    'hero-assets/06-telephone.png',
+      'hero-assets/07-floppy.png',    'hero-assets/08-boombox.png',
+      'hero-assets/09-skate.png',     'hero-assets/10-star.png',
+      'hero-assets/11-lightning.png', 'hero-assets/12-smiley.png'
+    ];
+    ICONS.forEach(src => { const i = new Image(); i.src = src; });   // preload
+    let idx = 0, lastEmit = 0;
+    const EMIT_MS = 90;                                              // ~11/sec while moving
+    cta.addEventListener('mousemove', (e) => {
+      const now = performance.now();
+      if (now - lastEmit < EMIT_MS) return;
+      lastEmit = now;
+      spawn(e.clientX, e.clientY);
+    });
+    function spawn(x, y) {
+      const img = document.createElement('img');
+      const s = 50 + Math.random() * 22;
+      img.src = ICONS[idx]; idx = (idx + 1) % ICONS.length;         // rotate through the 12
+      img.className = 'sticker';
+      img.style.width = img.style.height = s + 'px';
+      document.body.appendChild(img);
+      const dx = 55 + Math.random() * 70;                           // drift right
+      const dy = -(85 + Math.random() * 75);                        // drift up
+      const rot = Math.random() * 46 - 23;
+      gsap.set(img, { x: x - s / 2, y: y - s / 2, scale: .5, opacity: 0, rotation: rot * .4 });
+      const tl = gsap.timeline({ onComplete: () => img.remove() });
+      tl.to(img, { scale: 1, opacity: 1, duration: .13, ease: 'back.out(2.4)' })
+        .to(img, { x: '+=' + dx, y: '+=' + dy, rotation: rot, duration: .72, ease: 'power2.out' }, 0)
+        .to(img, { opacity: 0, duration: .4, ease: 'power1.in' }, .34);
+    }
+
+    /* ---------- WebGL rainbow shader (border ring) ---------- */
+    const canvas = document.querySelector('canvas.rainbow');
+    const gl = canvas.getContext('webgl2', { antialias: true, premultipliedAlpha: true });
+    if (gl) {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width  = Math.round(244 * dpr);
+      canvas.height = Math.round(80 * dpr);
+      const vs = `#version 300 es
+        in vec2 p; void main(){ gl_Position = vec4(p, 0.0, 1.0); }`;
+      const fs = `#version 300 es
+        precision highp float;
+        out vec4 o; uniform vec2 uRes; uniform float uT;
+        vec3 hsv(float h){ vec3 k = abs(fract(h + vec3(0.0, 2.0/3.0, 1.0/3.0)) * 6.0 - 3.0); return clamp(k - 1.0, 0.0, 1.0); }
+        void main(){
+          vec2 uv = gl_FragCoord.xy / uRes;
+          vec2 c  = uv - 0.5;
+          float ang = atan(c.y, c.x) / 6.2831853;             // sweep around the ring
+          float h = fract(ang * 1.0 + (uv.x * 0.65 + uv.y * 0.35) + uT * 1.8);
+          vec3 col = hsv(h);
+          col = mix(col, vec3(1.0), 0.06);                    // a hair brighter / glossier
+          o = vec4(col, 1.0);
+        }`;
+      const sh = (t, s) => { const x = gl.createShader(t); gl.shaderSource(x, s); gl.compileShader(x); return x; };
+      const pr = gl.createProgram();
+      gl.attachShader(pr, sh(gl.VERTEX_SHADER, vs));
+      gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, fs));
+      gl.linkProgram(pr); gl.useProgram(pr);
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+      const loc = gl.getAttribLocation(pr, 'p');
+      gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      const uRes = gl.getUniformLocation(pr, 'uRes');
+      const uT   = gl.getUniformLocation(pr, 'uT');
+      gl.viewport(0, 0, canvas.width, canvas.height);
+      const t0 = performance.now();
+      (function frame() {
+        gl.uniform2f(uRes, canvas.width, canvas.height);
+        gl.uniform1f(uT, (performance.now() - t0) / 1000);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+        requestAnimationFrame(frame);
+      })();
+    }
+  })();
+  </script>
+</body>
+</html>

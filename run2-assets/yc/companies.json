@@ -1,0 +1,2178 @@
+{
+ "meta": {
+  "source": "yc-oss",
+  "batches": [
+   "Winter 2025",
+   "Spring 2025",
+   "Summer 2025",
+   "Fall 2025",
+   "Winter 2026",
+   "Spring 2026",
+   "Summer 2026",
+   "Fall 2026"
+  ],
+  "count": 240
+ },
+ "companies": [
+  {
+   "name": "10x",
+   "slug": "10x",
+   "batch": "Winter 2025",
+   "one_liner": "AI Sales Teams for Dental Practices",
+   "website": "https://www.10xdental.com/",
+   "logo": "run2-assets/yc/logos/10x.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Agentin AI",
+   "slug": "agentin-ai",
+   "batch": "Winter 2025",
+   "one_liner": "AI Agents that automate enterprise software processes",
+   "website": "https://www.agentin.ai",
+   "logo": "run2-assets/yc/logos/agentin-ai.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Artificial Societies",
+   "slug": "artificial-societies",
+   "batch": "Winter 2025",
+   "one_liner": "We build networks of AI personas that simulate stakeholder opinions",
+   "website": "https://societies.io",
+   "logo": "run2-assets/yc/logos/artificial-societies.png",
+   "ar": 1.0
+  },
+  {
+   "name": "awen",
+   "slug": "awen",
+   "batch": "Winter 2025",
+   "one_liner": "awen translates intent into exceptional visuals through conversation",
+   "website": "https://www.awen.ai/",
+   "logo": "run2-assets/yc/logos/awen.png",
+   "ar": 1.01
+  },
+  {
+   "name": "Bindwell",
+   "slug": "bindwell",
+   "batch": "Winter 2025",
+   "one_liner": "Discovering new pesticides with AI",
+   "website": "https://www.bindwell.ai/",
+   "logo": "run2-assets/yc/logos/bindwell.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Butter",
+   "slug": "butter",
+   "batch": "Winter 2025",
+   "one_liner": "Embedded Sandboxes for Agents",
+   "website": "https://butter.dev",
+   "logo": "run2-assets/yc/logos/butter.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Cardamon",
+   "slug": "cardamon",
+   "batch": "Winter 2025",
+   "one_liner": "AI compliance co-pilot for regulated financial businesses",
+   "website": "https://cardamon.ai/",
+   "logo": "run2-assets/yc/logos/cardamon.png",
+   "ar": 0.96
+  },
+  {
+   "name": "Cifrato",
+   "slug": "cifrato",
+   "batch": "Winter 2025",
+   "one_liner": "AI Accountant for Accounting Firms",
+   "website": "https://cifrato.ai",
+   "logo": "run2-assets/yc/logos/cifrato.png",
+   "ar": 1.0
+  },
+  {
+   "name": "CopyCat",
+   "slug": "copycat",
+   "batch": "Winter 2025",
+   "one_liner": "AI agents built for insurance.",
+   "website": "https://runcopycat.com",
+   "logo": "run2-assets/yc/logos/copycat.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Delineate",
+   "slug": "delineate",
+   "batch": "Winter 2025",
+   "one_liner": "Agents for Accelerated Clinical Trial Design",
+   "website": "https://delineate.pro/",
+   "logo": "run2-assets/yc/logos/delineate.png",
+   "ar": 1.01
+  },
+  {
+   "name": "Enhanced Radar",
+   "slug": "enhanced-radar",
+   "batch": "Winter 2025",
+   "one_liner": "AI for air traffic control",
+   "website": "https://www.enhancedradar.com/",
+   "logo": "run2-assets/yc/logos/enhanced-radar.png",
+   "ar": 1.0
+  },
+  {
+   "name": "finbar",
+   "slug": "finbar",
+   "batch": "Winter 2025",
+   "one_liner": "The AI investment analyst",
+   "website": "https://finbar.com",
+   "logo": "run2-assets/yc/logos/finbar.png",
+   "ar": 1.0
+  },
+  {
+   "name": "G LNK",
+   "slug": "g-lnk",
+   "batch": "Winter 2025",
+   "one_liner": "Simplifying Collaboration for Healthcare Organizations & Professionals",
+   "website": "https://glnkco.com/",
+   "logo": "run2-assets/yc/logos/g-lnk.png",
+   "ar": 1.02
+  },
+  {
+   "name": "HealthKey",
+   "slug": "healthkey",
+   "batch": "Winter 2025",
+   "one_liner": "AI-powered Patient Identification for Clinical Trials",
+   "website": "https://gethealthkey.com/",
+   "logo": "run2-assets/yc/logos/healthkey.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Inversion Semiconductor",
+   "slug": "inversion-semiconductor",
+   "batch": "Winter 2025",
+   "one_liner": "Manufacturing the most powerful chips, 15x faster",
+   "website": "https://www.inversionsemi.com",
+   "logo": "run2-assets/yc/logos/inversion-semiconductor.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Lopus",
+   "slug": "lopus",
+   "batch": "Winter 2025",
+   "one_liner": "Headless Data Team",
+   "website": "https://lopus.ai",
+   "logo": "run2-assets/yc/logos/lopus.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Maritime Fusion",
+   "slug": "maritime-fusion",
+   "batch": "Winter 2025",
+   "one_liner": "Fusion reactors for ships",
+   "website": "https://maritimefusion.com",
+   "logo": "run2-assets/yc/logos/maritime-fusion.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Misprint",
+   "slug": "misprint",
+   "batch": "Winter 2025",
+   "one_liner": "Misprint is building Robinhood for Pokemon cards",
+   "website": "https://www.misprint.com",
+   "logo": "run2-assets/yc/logos/misprint.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Oki",
+   "slug": "oki",
+   "batch": "Winter 2025",
+   "one_liner": "The digital home for your personal memories that grows with you",
+   "website": "https://okihome.ai",
+   "logo": "run2-assets/yc/logos/oki.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Optifye.ai",
+   "slug": "optifye-ai",
+   "batch": "Winter 2025",
+   "one_liner": "AI performance monitoring for factory workers",
+   "website": "https://www.optifye.ai",
+   "logo": "run2-assets/yc/logos/optifye-ai.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Overstand Labs",
+   "slug": "overstand-labs",
+   "batch": "Winter 2025",
+   "one_liner": "Navigate any set of data - no matter how large - in minutes.",
+   "website": "https://overstandlabs.com",
+   "logo": "run2-assets/yc/logos/overstand-labs.png",
+   "ar": 1.0
+  },
+  {
+   "name": "PAX Markets",
+   "slug": "pax-markets",
+   "batch": "Winter 2025",
+   "one_liner": "More 𝛼, less latency: exchange and HFT on one chip.",
+   "website": "https://pax.markets/",
+   "logo": "run2-assets/yc/logos/pax-markets.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Pluto",
+   "slug": "pluto",
+   "batch": "Winter 2025",
+   "one_liner": "Regulated derivatives exchange",
+   "website": "https://www.pluto.trade",
+   "logo": "run2-assets/yc/logos/pluto.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Rally",
+   "slug": "rally-3",
+   "batch": "Winter 2025",
+   "one_liner": "Financial OS for Modern Fleets",
+   "website": "https://www.getrally.com/",
+   "logo": "run2-assets/yc/logos/rally-3.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Retrofit",
+   "slug": "retrofit",
+   "batch": "Winter 2025",
+   "one_liner": "A vintage marketplace curated by AI",
+   "website": "https://www.retrofit.shop/",
+   "logo": "run2-assets/yc/logos/retrofit.png",
+   "ar": 1.0
+  },
+  {
+   "name": "SalesPatriot",
+   "slug": "salespatriot",
+   "batch": "Winter 2025",
+   "one_liner": "AI powered operating system for distributors and OEMs",
+   "website": "https://www.salespatriot.com/",
+   "logo": "run2-assets/yc/logos/salespatriot.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Splash Inc.",
+   "slug": "splash-inc",
+   "batch": "Winter 2025",
+   "one_liner": "Autonomous patrol-boats for National Security",
+   "website": "https://splash9.com/",
+   "logo": "run2-assets/yc/logos/splash-inc.png",
+   "ar": 1.0
+  },
+  {
+   "name": "SubImage",
+   "slug": "subimage",
+   "batch": "Winter 2025",
+   "one_liner": "The Open-Core Security Graph.",
+   "website": "https://subimage.io",
+   "logo": "run2-assets/yc/logos/subimage.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Sublingual",
+   "slug": "sublingual",
+   "batch": "Winter 2025",
+   "one_liner": "Daily productivity tracker",
+   "website": "https://sublingual.ai/",
+   "logo": "run2-assets/yc/logos/sublingual.png",
+   "ar": 1.0
+  },
+  {
+   "name": "TamLabs",
+   "slug": "tamlabs",
+   "batch": "Winter 2025",
+   "one_liner": "Agent Teams for Professionals",
+   "website": "https://tamlabs.ai",
+   "logo": "run2-assets/yc/logos/tamlabs.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Toothy AI",
+   "slug": "toothy-ai",
+   "batch": "Winter 2025",
+   "one_liner": "AI for insurance verification & billing at dental clinics",
+   "website": "https://www.toothy.ai/",
+   "logo": "run2-assets/yc/logos/toothy-ai.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Truffle AI",
+   "slug": "truffle-ai",
+   "batch": "Winter 2025",
+   "one_liner": "AWS for AI Agents",
+   "website": "https://www.trytruffle.ai/",
+   "logo": "run2-assets/yc/logos/truffle-ai.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Vetnio",
+   "slug": "vetnio",
+   "batch": "Winter 2025",
+   "one_liner": "AI Copilot that automates admin work for veterinary professionals",
+   "website": "https://vetnio.com/",
+   "logo": "run2-assets/yc/logos/vetnio.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Woz",
+   "slug": "woz",
+   "batch": "Winter 2025",
+   "one_liner": "Claude Code plugin that reduces token consumption and cost by 50%",
+   "website": "https://www.wozcode.com/",
+   "logo": "run2-assets/yc/logos/woz.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Acolite",
+   "slug": "acolite",
+   "batch": "Spring 2025",
+   "one_liner": "AI Native Commercial Insurance Broker",
+   "website": "https://acolite.ai",
+   "logo": "run2-assets/yc/logos/acolite.png",
+   "ar": 0.99
+  },
+  {
+   "name": "Alkali",
+   "slug": "alkali",
+   "batch": "Spring 2025",
+   "one_liner": "The smarter way to estimate steel.",
+   "website": "https://alkali.engineering",
+   "logo": "run2-assets/yc/logos/alkali.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Atlog",
+   "slug": "atlog",
+   "batch": "Spring 2025",
+   "one_liner": "Voice AI That Won't Get You Sued",
+   "website": "https://atlog.ai",
+   "logo": "run2-assets/yc/logos/atlog.png",
+   "ar": 1.01
+  },
+  {
+   "name": "Avallon AI",
+   "slug": "avallon-ai",
+   "batch": "Spring 2025",
+   "one_liner": "AI agents for insurance claims operations",
+   "website": "https://www.avallon.ai/",
+   "logo": "run2-assets/yc/logos/avallon-ai.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Better Auth",
+   "slug": "better-auth",
+   "batch": "Spring 2025",
+   "one_liner": "The authentication framework for TypeScript",
+   "website": "https://better-auth.com/",
+   "logo": "run2-assets/yc/logos/better-auth.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Blueshoe",
+   "slug": "blueshoe",
+   "batch": "Spring 2025",
+   "one_liner": "The AI-Native Consumer + Plaintiff Law Firm",
+   "website": "https://blueshoe.com",
+   "logo": "run2-assets/yc/logos/blueshoe.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Cactus",
+   "slug": "oncactus",
+   "batch": "Spring 2025",
+   "one_liner": "All-In-One AI Growth Partner. Built for Trades.",
+   "website": "https://oncactus.com",
+   "logo": "run2-assets/yc/logos/oncactus.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Casco",
+   "slug": "casco",
+   "batch": "Spring 2025",
+   "one_liner": "Autonomous security testing for web apps, APIs, cloud, and AI systems",
+   "website": "https://casco.com",
+   "logo": "run2-assets/yc/logos/casco.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Caucus",
+   "slug": "caucus",
+   "batch": "Spring 2025",
+   "one_liner": "AI CRM for Government",
+   "website": "https://www.usecaucus.com/",
+   "logo": "run2-assets/yc/logos/caucus.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Claim Health",
+   "slug": "claim-health",
+   "batch": "Spring 2025",
+   "one_liner": "AI Revenue Platform for Post-Acute Care",
+   "website": "https://www.claimhealth.com",
+   "logo": "run2-assets/yc/logos/claim-health.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Combinely",
+   "slug": "combinely",
+   "batch": "Spring 2025",
+   "one_liner": "AI coworker for Accountants",
+   "website": "https://combinely.ai",
+   "logo": "run2-assets/yc/logos/combinely.png",
+   "ar": 1.0
+  },
+  {
+   "name": "cubic",
+   "slug": "cubic",
+   "batch": "Spring 2025",
+   "one_liner": "AI-powered code review platform",
+   "website": "https://cubic.dev/",
+   "logo": "run2-assets/yc/logos/cubic.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Feyn",
+   "slug": "feyn",
+   "batch": "Spring 2025",
+   "one_liner": "Custom models trained on your data",
+   "website": "https://www.usefeyn.com",
+   "logo": "run2-assets/yc/logos/feyn.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Godela",
+   "slug": "godela",
+   "batch": "Spring 2025",
+   "one_liner": "AI Physics Engine to replace simulations and prototypes",
+   "website": "http://godela.ai",
+   "logo": "run2-assets/yc/logos/godela.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Hanji",
+   "slug": "hanji",
+   "batch": "Spring 2025",
+   "one_liner": "Turn complex documents into AI-ready data",
+   "website": "https://hanji.dev/",
+   "logo": "run2-assets/yc/logos/hanji.png",
+   "ar": 1.0
+  },
+  {
+   "name": "IRBC",
+   "slug": "irbc",
+   "batch": "Spring 2025",
+   "one_liner": "AI-native financial institution for global businesses + agents.",
+   "website": "https://irbc.com/",
+   "logo": "run2-assets/yc/logos/irbc.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Kashikoi",
+   "slug": "kashikoi",
+   "batch": "Spring 2025",
+   "one_liner": "Simulation Engine for Benchmarking AI Products",
+   "website": "https://www.getkashikoi.com",
+   "logo": "run2-assets/yc/logos/kashikoi.png",
+   "ar": 1.76
+  },
+  {
+   "name": "Labric",
+   "slug": "labric",
+   "batch": "Spring 2025",
+   "one_liner": "The data layer for scientific research",
+   "website": "https://labric.co",
+   "logo": "run2-assets/yc/logos/labric.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Lumari",
+   "slug": "lumari",
+   "batch": "Spring 2025",
+   "one_liner": "AI Digital Workers for Supply Chain",
+   "website": "https://www.lumari.ai/",
+   "logo": "run2-assets/yc/logos/lumari.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Minerva",
+   "slug": "minerva",
+   "batch": "Spring 2025",
+   "one_liner": "AI native accounting firm",
+   "website": "https://www.tryminerva.ai",
+   "logo": "run2-assets/yc/logos/minerva.png",
+   "ar": 1.0
+  },
+  {
+   "name": "nao Labs",
+   "slug": "nao-labs",
+   "batch": "Spring 2025",
+   "one_liner": "Open Source Analytics Agent",
+   "website": "https://getnao.io/",
+   "logo": "run2-assets/yc/logos/nao-labs.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Nomi",
+   "slug": "nomi",
+   "batch": "Spring 2025",
+   "one_liner": "Realtime Sales Copilot",
+   "website": "https://www.nomi.so",
+   "logo": "run2-assets/yc/logos/nomi.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Paper Instruments",
+   "slug": "paper-instruments",
+   "batch": "Spring 2025",
+   "one_liner": "Frontier models and software for knowledge work",
+   "website": "https://www.paperinstruments.com/",
+   "logo": "run2-assets/yc/logos/paper-instruments.png",
+   "ar": 1.0
+  },
+  {
+   "name": "PgDog",
+   "slug": "pgdog",
+   "batch": "Spring 2025",
+   "one_liner": "Scaling engine for PostgreSQL",
+   "website": "https://pgdog.dev",
+   "logo": "run2-assets/yc/logos/pgdog.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Prism",
+   "slug": "prism",
+   "batch": "Spring 2025",
+   "one_liner": "Deploy AI Agents with a Single API Call",
+   "website": "https://herm.run",
+   "logo": "run2-assets/yc/logos/prism.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Propolis",
+   "slug": "propolis",
+   "batch": "Spring 2025",
+   "one_liner": "Hands off QA via intelligent browser agents.",
+   "website": "https://propolis.tech/",
+   "logo": "run2-assets/yc/logos/propolis.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Ralo",
+   "slug": "ralo",
+   "batch": "Spring 2025",
+   "one_liner": "AI-Native Mortgage Broker",
+   "website": "https://www.ralo.com/",
+   "logo": "run2-assets/yc/logos/ralo.png",
+   "ar": 1.0
+  },
+  {
+   "name": "sieve",
+   "slug": "sieveai",
+   "batch": "Spring 2025",
+   "one_liner": "AI + human review to solve data cleaning - accessible via API or Excel",
+   "website": "https://usesieve.com/",
+   "logo": "run2-assets/yc/logos/sieveai.png",
+   "ar": 1.0
+  },
+  {
+   "name": "stratify",
+   "slug": "stratify",
+   "batch": "Spring 2025",
+   "one_liner": "AI agents that help you understand your customers' needs",
+   "website": "https://www.trystratify.com",
+   "logo": "run2-assets/yc/logos/stratify.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Tegore",
+   "slug": "tegore",
+   "batch": "Spring 2025",
+   "one_liner": "Your new AI-powered math tutor.",
+   "website": "https://tegore.ai/",
+   "logo": "run2-assets/yc/logos/tegore.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Theta",
+   "slug": "theta",
+   "batch": "Spring 2025",
+   "one_liner": "Specialized AI for Every Job",
+   "website": "https://thetasoftware.com",
+   "logo": "run2-assets/yc/logos/theta.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Trapeze",
+   "slug": "trapeze",
+   "batch": "Spring 2025",
+   "one_liner": "AI-native Zocdoc",
+   "website": "https://www.trapezehealth.com",
+   "logo": "run2-assets/yc/logos/trapeze.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Vesence",
+   "slug": "vesence",
+   "batch": "Spring 2025",
+   "one_liner": "Cursor for Lawyers. Agentic AI in MS Office.",
+   "website": "https://vesence.com",
+   "logo": "run2-assets/yc/logos/vesence.png",
+   "ar": 0.99
+  },
+  {
+   "name": "Waffle",
+   "slug": "waffle",
+   "batch": "Spring 2025",
+   "one_liner": "Discover & Build AI Chatbots",
+   "website": "https://www.waffle.ai",
+   "logo": "run2-assets/yc/logos/waffle.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Acrely",
+   "slug": "acrely",
+   "batch": "Summer 2025",
+   "one_liner": "Enterprise Voice Agents",
+   "website": "https://www.acrely.ai",
+   "logo": "run2-assets/yc/logos/acrely.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Alter",
+   "slug": "alter",
+   "batch": "Summer 2025",
+   "one_liner": "Secure access control and authorization platform for agent workflows",
+   "website": "https://alterauth.com",
+   "logo": "run2-assets/yc/logos/alter.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Autosana",
+   "slug": "autosana",
+   "batch": "Summer 2025",
+   "one_liner": "AI agents for E2E testing across mobile & web",
+   "website": "https://autosana.ai",
+   "logo": "run2-assets/yc/logos/autosana.png",
+   "ar": 1.0
+  },
+  {
+   "name": "bitrig",
+   "slug": "bitrig",
+   "batch": "Summer 2025",
+   "one_liner": "Vibe code, test, and deploy Swift apps. All from your iPhone.",
+   "website": "https://bitrig.com",
+   "logo": "run2-assets/yc/logos/bitrig.png",
+   "ar": 1.0
+  },
+  {
+   "name": "burnt",
+   "slug": "burnt",
+   "batch": "Summer 2025",
+   "one_liner": "Agentic Operating System for Food Supply Chain",
+   "website": "https://getburnt.ai/",
+   "logo": "run2-assets/yc/logos/burnt.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Char",
+   "slug": "char",
+   "batch": "Summer 2025",
+   "one_liner": "The AI notepad that knows and works for you",
+   "website": "https://char.com",
+   "logo": "run2-assets/yc/logos/char.png",
+   "ar": 1.0
+  },
+  {
+   "name": "ContextFort",
+   "slug": "contextfort",
+   "batch": "Summer 2025",
+   "one_liner": "Visibility and Controls for Browser Agents",
+   "website": "https://contextfort.ai/",
+   "logo": "run2-assets/yc/logos/contextfort.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Dedalus Labs",
+   "slug": "dedalus-labs",
+   "batch": "Summer 2025",
+   "one_liner": "Compute substrate for AI agents",
+   "website": "https://www.dedaluslabs.ai/",
+   "logo": "run2-assets/yc/logos/dedalus-labs.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Duranium",
+   "slug": "duranium",
+   "batch": "Summer 2025",
+   "one_liner": "Reshoring critical metal production",
+   "website": "https://www.duranium.co/",
+   "logo": "run2-assets/yc/logos/duranium.png",
+   "ar": 1.01
+  },
+  {
+   "name": "F4 Industries",
+   "slug": "f4-industries",
+   "batch": "Summer 2025",
+   "one_liner": "The GD&T Analysis Platform for Engineering Drawings",
+   "website": "https://f4.dev/",
+   "logo": "run2-assets/yc/logos/f4-industries.png",
+   "ar": 1.06
+  },
+  {
+   "name": "Flywheel AI",
+   "slug": "flywheel-ai",
+   "batch": "Summer 2025",
+   "one_liner": "Waymo for excavators",
+   "website": "https://useflywheel.ai/",
+   "logo": "run2-assets/yc/logos/flywheel-ai.png",
+   "ar": 1.0
+  },
+  {
+   "name": "GhostEye",
+   "slug": "ghosteye",
+   "batch": "Summer 2025",
+   "one_liner": "AI-Powered Social Engineering Defense",
+   "website": "https://ghosteye.ai",
+   "logo": "run2-assets/yc/logos/ghosteye.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Idler",
+   "slug": "idler",
+   "batch": "Summer 2025",
+   "one_liner": "Reinforcement learning environments.",
+   "website": "https://idler.ai/",
+   "logo": "run2-assets/yc/logos/idler.png",
+   "ar": 1.0
+  },
+  {
+   "name": "IronLedger.ai",
+   "slug": "ironledger-ai",
+   "batch": "Summer 2025",
+   "one_liner": "AI-enabled Corporate Cards and Invoice Processing for Real Estate",
+   "website": "https://ironledger.ai",
+   "logo": "run2-assets/yc/logos/ironledger-ai.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Kestroll",
+   "slug": "kestroll",
+   "batch": "Summer 2025",
+   "one_liner": "",
+   "website": "",
+   "logo": "run2-assets/yc/logos/kestroll.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Liva AI",
+   "slug": "liva-ai",
+   "batch": "Summer 2025",
+   "one_liner": "Audio & Video Data",
+   "website": "https://www.theliva.ai",
+   "logo": "run2-assets/yc/logos/liva-ai.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Magnetic",
+   "slug": "magnetic",
+   "batch": "Summer 2025",
+   "one_liner": "AI Tax Preparer for CPA firms",
+   "website": "https://www.magnetictax.com",
+   "logo": "run2-assets/yc/logos/magnetic.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Meteor",
+   "slug": "meteor",
+   "batch": "Summer 2025",
+   "one_liner": "An AI-Native Browser",
+   "website": "https://browse.dev",
+   "logo": "run2-assets/yc/logos/meteor.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Monte",
+   "slug": "monte",
+   "batch": "Summer 2025",
+   "one_liner": "Continual Learning for Agents",
+   "website": "https://trymonte.ai",
+   "logo": "run2-assets/yc/logos/monte.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Normal",
+   "slug": "normal",
+   "batch": "Summer 2025",
+   "one_liner": "Testing and certifying the hardware of the future",
+   "website": "https://www.normalfactory.com/",
+   "logo": "run2-assets/yc/logos/normal.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Nozomio",
+   "slug": "nozomio",
+   "batch": "Summer 2025",
+   "one_liner": "product lab solving context in ai",
+   "website": "https://www.nozomio.com/",
+   "logo": "run2-assets/yc/logos/nozomio.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Nuntius",
+   "slug": "nuntius",
+   "batch": "Summer 2025",
+   "one_liner": "Making Models Follow Rules.",
+   "website": "https://www.nuntius.ai",
+   "logo": "run2-assets/yc/logos/nuntius.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Orange Slice",
+   "slug": "orange-slice",
+   "batch": "Summer 2025",
+   "one_liner": "Agentic sales enrichment spreadsheet",
+   "website": "https://orangeslice.ai",
+   "logo": "run2-assets/yc/logos/orange-slice.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Pangolin",
+   "slug": "pangolin",
+   "batch": "Summer 2025",
+   "one_liner": "Identity-aware VPN and proxy for remote access to anything, anywhere.",
+   "website": "https://pangolin.net",
+   "logo": "run2-assets/yc/logos/pangolin.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Perspectives Health",
+   "slug": "perspectives-health",
+   "batch": "Summer 2025",
+   "one_liner": "Automating away admin for behavioral health clinics",
+   "website": "https://perspectiveshealth.ai/",
+   "logo": "run2-assets/yc/logos/perspectives-health.png",
+   "ar": 0.89
+  },
+  {
+   "name": "Pleom",
+   "slug": "pleom",
+   "batch": "Summer 2025",
+   "one_liner": "Agentic Business Intelligence",
+   "website": "https://pleom.com",
+   "logo": "run2-assets/yc/logos/pleom.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Reacher",
+   "slug": "reacher",
+   "batch": "Summer 2025",
+   "one_liner": "We automate creator marketing for the world's largest brands",
+   "website": "https://reacherapp.com/",
+   "logo": "run2-assets/yc/logos/reacher.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Riverbank",
+   "slug": "riverbank",
+   "batch": "Summer 2025",
+   "one_liner": "AI-native Red Teaming and Offensive Security",
+   "website": "https://www.riverbank.sh/",
+   "logo": "run2-assets/yc/logos/riverbank.png",
+   "ar": 1.0
+  },
+  {
+   "name": "SigmanticAI",
+   "slug": "sigmanticai",
+   "batch": "Summer 2025",
+   "one_liner": "The Cursor for Chip Design - Delivering Silicon-Ready Chip Designs…",
+   "website": "https://www.sigmanticai.com",
+   "logo": "run2-assets/yc/logos/sigmanticai.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Spotlight Realty",
+   "slug": "spotlight-realty",
+   "batch": "Summer 2025",
+   "one_liner": "AI powered brokerage reducing residential rental commissions in NYC…",
+   "website": "https://www.spotlight.realty",
+   "logo": "run2-assets/yc/logos/spotlight-realty.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Synthetic Society",
+   "slug": "synthetic-society",
+   "batch": "Summer 2025",
+   "one_liner": "Synthetic Users to Simulate Real Users",
+   "website": "https://syntheticsociety.ai/",
+   "logo": "run2-assets/yc/logos/synthetic-society.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Topological",
+   "slug": "topological",
+   "batch": "Summer 2025",
+   "one_liner": "Physics-based foundation models for CAD optimization.",
+   "website": "https://www.topological.com",
+   "logo": "run2-assets/yc/logos/topological.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Uplift AI",
+   "slug": "uplift-ai",
+   "batch": "Summer 2025",
+   "one_liner": "Foundational Voice Models for regional languages",
+   "website": "https://upliftai.org/",
+   "logo": "run2-assets/yc/logos/uplift-ai.png",
+   "ar": 0.93
+  },
+  {
+   "name": "Wafer",
+   "slug": "wafer",
+   "batch": "Summer 2025",
+   "one_liner": "AI that makes AI fast",
+   "website": "https://www.wafer.ai",
+   "logo": "run2-assets/yc/logos/wafer.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Absurd",
+   "slug": "absurd",
+   "batch": "Fall 2025",
+   "one_liner": "The Creative OS for AI video",
+   "website": "https://absurd.com/",
+   "logo": "run2-assets/yc/logos/absurd.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Amera",
+   "slug": "amera",
+   "batch": "Fall 2025",
+   "one_liner": "Automating claims processing workflows for health insurance payers.",
+   "website": "https://amerahealthsolutions.com/",
+   "logo": "run2-assets/yc/logos/amera.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Aside",
+   "slug": "aside",
+   "batch": "Fall 2025",
+   "one_liner": "The browser built to do real work for you",
+   "website": "https://aside.com",
+   "logo": "run2-assets/yc/logos/aside.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Autonomous Technologies Group",
+   "slug": "autonomous-technologies-group",
+   "batch": "Fall 2025",
+   "one_liner": "Superintelligent financial advisor",
+   "website": "https://becomeautonomous.com/",
+   "logo": "run2-assets/yc/logos/autonomous-technologies-group.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Brickanta",
+   "slug": "brickanta",
+   "batch": "Fall 2025",
+   "one_liner": "Agentic AI for Society Builders",
+   "website": "https://www.brickanta.com",
+   "logo": "run2-assets/yc/logos/brickanta.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Casey",
+   "slug": "casey",
+   "batch": "Fall 2025",
+   "one_liner": "Casey is an AI-native commercial insurance brokerage",
+   "website": "https://caseyinsure.com/",
+   "logo": "run2-assets/yc/logos/casey.png",
+   "ar": 1.0
+  },
+  {
+   "name": "ComplyDo",
+   "slug": "complydo",
+   "batch": "Fall 2025",
+   "one_liner": "Global Compliance for Enterprises",
+   "website": "https://www.complydo.io/",
+   "logo": "run2-assets/yc/logos/complydo.png",
+   "ar": 0.91
+  },
+  {
+   "name": "Crunched",
+   "slug": "crunched",
+   "batch": "Fall 2025",
+   "one_liner": "Excel AI analyst for Power Users",
+   "website": "https://usecrunched.com/",
+   "logo": "run2-assets/yc/logos/crunched.png",
+   "ar": 1.0
+  },
+  {
+   "name": "DiligenceSquared",
+   "slug": "diligencesquared-inc",
+   "batch": "Fall 2025",
+   "one_liner": "AI-powered market due diligence for investment decisions",
+   "website": "https://diligencesquared.com/",
+   "logo": "run2-assets/yc/logos/diligencesquared-inc.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Expected Parrot",
+   "slug": "expected-parrot",
+   "batch": "Fall 2025",
+   "one_liner": "Simulate your customers with AI agents",
+   "website": "https://www.expectedparrot.com",
+   "logo": "run2-assets/yc/logos/expected-parrot.png",
+   "ar": 1.01
+  },
+  {
+   "name": "Forge Robotics",
+   "slug": "forge-robotics",
+   "batch": "Fall 2025",
+   "one_liner": "A robotics intelligence system for metal fabrication",
+   "website": "https://forge-robotics.com",
+   "logo": "run2-assets/yc/logos/forge-robotics.png",
+   "ar": 1.0
+  },
+  {
+   "name": "hillclimb",
+   "slug": "hillclimb",
+   "batch": "Fall 2025",
+   "one_liner": "Training Data for Recursive Self-Improvement",
+   "website": "https://hillclimb.com",
+   "logo": "run2-assets/yc/logos/hillclimb.png",
+   "ar": 1.18
+  },
+  {
+   "name": "Imagine AI",
+   "slug": "imagine-ai",
+   "batch": "Fall 2025",
+   "one_liner": "We reverse engineer B2B growth, starting with LinkedIn.",
+   "website": "https://imagineai.me",
+   "logo": "run2-assets/yc/logos/imagine-ai.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Karumi",
+   "slug": "karumi",
+   "batch": "Fall 2025",
+   "one_liner": "The Waymo of Personalized demos",
+   "website": "https://www.karumi.ai/",
+   "logo": "run2-assets/yc/logos/karumi.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Lapis",
+   "slug": "lapis",
+   "batch": "Fall 2025",
+   "one_liner": "AI that creates and runs ads, end-end",
+   "website": "https://www.trylapis.com/",
+   "logo": "run2-assets/yc/logos/lapis.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Locus",
+   "slug": "locus",
+   "batch": "Fall 2025",
+   "one_liner": "Payment infrastructure for AI agents",
+   "website": "https://paywithlocus.com",
+   "logo": "run2-assets/yc/logos/locus.png",
+   "ar": 1.0
+  },
+  {
+   "name": "LunaBill",
+   "slug": "lunabill",
+   "batch": "Fall 2025",
+   "one_liner": "AI Voice callers for healthcare billing teams",
+   "website": "https://lunabill.com/",
+   "logo": "run2-assets/yc/logos/lunabill.png",
+   "ar": 0.99
+  },
+  {
+   "name": "Metorial",
+   "slug": "metorial",
+   "batch": "Fall 2025",
+   "one_liner": "Agentic infrastructure to power AI-native companies.",
+   "website": "https://metorial.com",
+   "logo": "run2-assets/yc/logos/metorial.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Mod AI",
+   "slug": "mod-ai",
+   "batch": "Fall 2025",
+   "one_liner": "Touchless AP Automation",
+   "website": "https://usemod.ai",
+   "logo": "run2-assets/yc/logos/mod-ai.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Narrative",
+   "slug": "usenarrative",
+   "batch": "Fall 2025",
+   "one_liner": "AI-Powered Sports Highlights",
+   "website": "http://www.narrative-sports.com",
+   "logo": "run2-assets/yc/logos/usenarrative.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Nori",
+   "slug": "nori",
+   "batch": "Fall 2025",
+   "one_liner": "AI health coach in your pocket",
+   "website": "https://nori.ai",
+   "logo": "run2-assets/yc/logos/nori.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Parametric",
+   "slug": "parametric",
+   "batch": "Fall 2025",
+   "one_liner": "Physical businesses that run themselves",
+   "website": "https://parametric.company/",
+   "logo": "run2-assets/yc/logos/parametric.png",
+   "ar": 0.99
+  },
+  {
+   "name": "Perseus",
+   "slug": "perseus",
+   "batch": "Fall 2025",
+   "one_liner": "Applied Lab focused on Search in Latent Spaces.",
+   "website": "https://perseus.computer",
+   "logo": "run2-assets/yc/logos/perseus.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Play Health",
+   "slug": "play-health",
+   "batch": "Fall 2025",
+   "one_liner": "Perimenopause Care Platform",
+   "website": "http://playhealth.com",
+   "logo": "run2-assets/yc/logos/play-health.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Rovi Health",
+   "slug": "rovi-health",
+   "batch": "Fall 2025",
+   "one_liner": "AI healthcare concierge for employees",
+   "website": "https://www.rovi.health",
+   "logo": "run2-assets/yc/logos/rovi-health.png",
+   "ar": 1.06
+  },
+  {
+   "name": "Scoop",
+   "slug": "scoop",
+   "batch": "Fall 2025",
+   "one_liner": "Automating regulatory submissions for life sciences",
+   "website": "https://scooplabs.ai",
+   "logo": "run2-assets/yc/logos/scoop.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Semiotic",
+   "slug": "semiotic",
+   "batch": "Fall 2025",
+   "one_liner": "Studio-Grade Design at Scale",
+   "website": "http://semiotic.com",
+   "logo": "run2-assets/yc/logos/semiotic.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Soren",
+   "slug": "soren",
+   "batch": "Fall 2025",
+   "one_liner": "AI Transformation for Regulated Institutions",
+   "website": "https://usesoren.com",
+   "logo": "run2-assets/yc/logos/soren.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Sunflower",
+   "slug": "sunflower",
+   "batch": "Fall 2025",
+   "one_liner": "Building the Sobriety Platform for the future of Superintelligence. 🌻",
+   "website": "https://sunflowersober.com/",
+   "logo": "run2-assets/yc/logos/sunflower.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Sylvian",
+   "slug": "sylvian",
+   "batch": "Fall 2025",
+   "one_liner": "Specialized AI Agents.",
+   "website": "https://sylvian.ai",
+   "logo": "run2-assets/yc/logos/sylvian.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Terrain",
+   "slug": "terrain",
+   "batch": "Fall 2025",
+   "one_liner": "AI native GTM platform for the physical economy",
+   "website": "https://getnivara.com/",
+   "logo": "run2-assets/yc/logos/terrain.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Trelium",
+   "slug": "trelium",
+   "batch": "Fall 2025",
+   "one_liner": "The Agent to Build Your Agents",
+   "website": "https://www.trelium.com",
+   "logo": "run2-assets/yc/logos/trelium.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Veria Labs",
+   "slug": "veria-labs",
+   "batch": "Fall 2025",
+   "one_liner": "Continuous AI pentesting that finds and fixes vulnerabilities",
+   "website": "https://verialabs.com",
+   "logo": "run2-assets/yc/logos/veria-labs.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Zephyr Fusion",
+   "slug": "zephyr-fusion",
+   "batch": "Fall 2025",
+   "one_liner": "Powering tomorrow's industrial revolution in space",
+   "website": "https://www.zephyrfusion.com",
+   "logo": "run2-assets/yc/logos/zephyr-fusion.png",
+   "ar": 1.21
+  },
+  {
+   "name": "/dev/fast",
+   "slug": "devfast",
+   "batch": "Winter 2026",
+   "one_liner": "/dev/fast is the AI-native code forge",
+   "website": "https://dev.fast",
+   "logo": "run2-assets/yc/logos/devfast.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Approxima",
+   "slug": "approxima",
+   "batch": "Winter 2026",
+   "one_liner": "Your software should build itself.",
+   "website": "https://approxima.ai",
+   "logo": "run2-assets/yc/logos/approxima.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Autumn AI",
+   "slug": "autumn-ai",
+   "batch": "Winter 2026",
+   "one_liner": "Stalk your prospects at scale.",
+   "website": "https://autumnai.com",
+   "logo": "run2-assets/yc/logos/autumn-ai.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Beacon Health",
+   "slug": "beacon-health",
+   "batch": "Winter 2026",
+   "one_liner": "AI Employees for Primary Care",
+   "website": "https://www.beaconhealth.ai/",
+   "logo": "run2-assets/yc/logos/beacon-health.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Bubble Lab",
+   "slug": "bubble-lab",
+   "batch": "Winter 2026",
+   "one_liner": "Operating system for premium professional communities",
+   "website": "https://bubblelab.ai/",
+   "logo": "run2-assets/yc/logos/bubble-lab.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Captain",
+   "slug": "captain",
+   "batch": "Winter 2026",
+   "one_liner": "Give AI agents accurate knowledge search that scales",
+   "website": "https://runcaptain.com",
+   "logo": "run2-assets/yc/logos/captain.png",
+   "ar": 1.0
+  },
+  {
+   "name": "CatchBack Cards",
+   "slug": "catchback-cards",
+   "batch": "Winter 2026",
+   "one_liner": "The most thrilling way to create and rip digital collectible packs",
+   "website": "https://catchbackcards.com",
+   "logo": "run2-assets/yc/logos/catchback-cards.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Cofia",
+   "slug": "cofia",
+   "batch": "Winter 2026",
+   "one_liner": "AI automations that implement themselves",
+   "website": "https://cofia.ai",
+   "logo": "run2-assets/yc/logos/cofia.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Copperlane",
+   "slug": "copperlane",
+   "batch": "Winter 2026",
+   "one_liner": "Agentic Mortgage Origination",
+   "website": "https://www.copperlane.ai",
+   "logo": "run2-assets/yc/logos/copperlane.png",
+   "ar": 1.0
+  },
+  {
+   "name": "DAIVIN!",
+   "slug": "daivin",
+   "batch": "Winter 2026",
+   "one_liner": "Tankless Dive Gear - Breath Autonomy at Sea, Land & Space",
+   "website": "https://www.daivin.tech/",
+   "logo": "run2-assets/yc/logos/daivin.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Emdash",
+   "slug": "emdash",
+   "batch": "Winter 2026",
+   "one_liner": "Open-source Agentic Development Environment",
+   "website": "https://emdash.ai",
+   "logo": "run2-assets/yc/logos/emdash.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Fern",
+   "slug": "fern-bot",
+   "batch": "Winter 2026",
+   "one_liner": "RL environments for robotics companies",
+   "website": "https://fern.bot",
+   "logo": "run2-assets/yc/logos/fern-bot.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Galactic Resource Utilization Space, Inc. (GRU Space)",
+   "slug": "galactic-resource-utilization-space-inc-gru-space",
+   "batch": "Winter 2026",
+   "one_liner": "Moon Hotel -> The Intergalactic Construction Company of Earth",
+   "website": "https://gru.space",
+   "logo": "run2-assets/yc/logos/galactic-resource-utilization-space-inc-gru-space.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Hex Security",
+   "slug": "hex-security",
+   "batch": "Winter 2026",
+   "one_liner": "Agentic Offensive Security at Scale",
+   "website": "https://hex.co?utm_source=bookface&utm_medium=referral&utm_campaign=hex-security-profile",
+   "logo": "run2-assets/yc/logos/hex-security.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Inviscid AI",
+   "slug": "inviscid-ai",
+   "batch": "Winter 2026",
+   "one_liner": "Real-time Physics Simulations for Industrial Facilities & Data Centers",
+   "website": "https://inviscidai.com/",
+   "logo": "run2-assets/yc/logos/inviscid-ai.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Laurence",
+   "slug": "laurence",
+   "batch": "Winter 2026",
+   "one_liner": "Hedge fund for ads",
+   "website": "https://laurence.com",
+   "logo": "run2-assets/yc/logos/laurence.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Mantis",
+   "slug": "mantis",
+   "batch": "Winter 2026",
+   "one_liner": "Digital Twins of humans",
+   "website": "https://mantisbiotech.com/",
+   "logo": "run2-assets/yc/logos/mantis.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Menza",
+   "slug": "menza",
+   "batch": "Winter 2026",
+   "one_liner": "The AI data analyst for consumer brands",
+   "website": "https://menza.ai/",
+   "logo": "run2-assets/yc/logos/menza.png",
+   "ar": 1.08
+  },
+  {
+   "name": "Ndea",
+   "slug": "ndea-com",
+   "batch": "Winter 2026",
+   "one_liner": "Building AGI that can innovate.",
+   "website": "https://ndea.com",
+   "logo": "run2-assets/yc/logos/ndea-com.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Origami Robotics",
+   "slug": "origami-robotics",
+   "batch": "Winter 2026",
+   "one_liner": "Manipulate Anything Robot",
+   "website": "https://www.origami-robotics.com",
+   "logo": "run2-assets/yc/logos/origami-robotics.png",
+   "ar": 1.06
+  },
+  {
+   "name": "Oximy",
+   "slug": "oximy",
+   "batch": "Winter 2026",
+   "one_liner": "See and control all AI activity across your enterprise",
+   "website": "https://oximy.com",
+   "logo": "run2-assets/yc/logos/oximy.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Payna",
+   "slug": "payna",
+   "batch": "Winter 2026",
+   "one_liner": "AI Licensing Agent for Regulated Industries",
+   "website": "https://payna.com/",
+   "logo": "run2-assets/yc/logos/payna.png",
+   "ar": 1.05
+  },
+  {
+   "name": "Polymath",
+   "slug": "polymath",
+   "batch": "Winter 2026",
+   "one_liner": "Simulation environments to train & evaluate long-horizon AI agents",
+   "website": "https://polymathlabs.ai/",
+   "logo": "run2-assets/yc/logos/polymath.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Q2Q",
+   "slug": "q2q",
+   "batch": "Winter 2026",
+   "one_liner": "We help private equity teams find acquisition targets faster",
+   "website": "https://www.tryq2q.com/",
+   "logo": "run2-assets/yc/logos/q2q.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Reframe",
+   "slug": "usereframe",
+   "batch": "Winter 2026",
+   "one_liner": "AI-native, hardware procurement marketplace",
+   "website": "http://usereframe.ai",
+   "logo": "run2-assets/yc/logos/usereframe.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Ritivel",
+   "slug": "ritivel",
+   "batch": "Winter 2026",
+   "one_liner": "AI-native platform for Life-Sciences Documentation",
+   "website": "https://www.ritivel.com",
+   "logo": "run2-assets/yc/logos/ritivel.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Salus",
+   "slug": "salus",
+   "batch": "Winter 2026",
+   "one_liner": "Guardrails to validate your agent's actions before they execute",
+   "website": "https://www.usesalus.ai/",
+   "logo": "run2-assets/yc/logos/salus.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Servo7",
+   "slug": "servo7",
+   "batch": "Winter 2026",
+   "one_liner": "Robots that unload containers in warehouses",
+   "website": "https://servo7.com",
+   "logo": "run2-assets/yc/logos/servo7.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Skillsync",
+   "slug": "skillsync",
+   "batch": "Winter 2026",
+   "one_liner": "Discord for building with agents",
+   "website": "https://skillsync.com",
+   "logo": "run2-assets/yc/logos/skillsync.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Stilta",
+   "slug": "stilta",
+   "batch": "Winter 2026",
+   "one_liner": "Agentic AI for intellectual property",
+   "website": "https://stilta.com",
+   "logo": "run2-assets/yc/logos/stilta.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Tepali",
+   "slug": "tepali",
+   "batch": "Winter 2026",
+   "one_liner": "AI-native operating system for aesthetics & wellness",
+   "website": "https://tepali.com",
+   "logo": "run2-assets/yc/logos/tepali.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Unifold",
+   "slug": "unifold",
+   "batch": "Winter 2026",
+   "one_liner": "Multi-chain deposit and payment infrastructure",
+   "website": "https://unifold.io",
+   "logo": "run2-assets/yc/logos/unifold.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Velum Labs",
+   "slug": "velum-labs",
+   "batch": "Winter 2026",
+   "one_liner": "The OS for data quality across any stack",
+   "website": "https://www.velum-labs.com/",
+   "logo": "run2-assets/yc/logos/velum-labs.png",
+   "ar": 1.61
+  },
+  {
+   "name": "VOYGR",
+   "slug": "voygr",
+   "batch": "Winter 2026",
+   "one_liner": "Real-world place intelligence for AI apps and agents",
+   "website": "https://voygr.tech",
+   "logo": "run2-assets/yc/logos/voygr.png",
+   "ar": 1.0
+  },
+  {
+   "name": "9 Mothers",
+   "slug": "9-mothers-corporation",
+   "batch": "Spring 2026",
+   "one_liner": "Counter Drone Systems. $1.6m sales. We delivered for the DoW.",
+   "website": "https://9mothers.com",
+   "logo": "run2-assets/yc/logos/9-mothers-corporation.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Akkari",
+   "slug": "akkari",
+   "batch": "Spring 2026",
+   "one_liner": "Autonomous Customer Operations",
+   "website": "https://akkari.io/",
+   "logo": "run2-assets/yc/logos/akkari.png",
+   "ar": 1.0
+  },
+  {
+   "name": "ANORIA",
+   "slug": "anoria",
+   "batch": "Spring 2026",
+   "one_liner": "The first wearable that reads your emotions to enhance your EQ.",
+   "website": "https://www.anoria.com",
+   "logo": "run2-assets/yc/logos/anoria.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Arden",
+   "slug": "arden",
+   "batch": "Spring 2026",
+   "one_liner": "AI-native internal audit firm",
+   "website": "https://ardentech.ai/",
+   "logo": "run2-assets/yc/logos/arden.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Asendia AI",
+   "slug": "asendia-ai",
+   "batch": "Spring 2026",
+   "one_liner": "AI recruiters for staffing agencies",
+   "website": "https://asendia.ai/",
+   "logo": "run2-assets/yc/logos/asendia-ai.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Auxos",
+   "slug": "auxos",
+   "batch": "Spring 2026",
+   "one_liner": "Simulations of real people for market research",
+   "website": "https://www.useauxos.com",
+   "logo": "run2-assets/yc/logos/auxos.png",
+   "ar": 1.02
+  },
+  {
+   "name": "CharacterQuilt",
+   "slug": "characterquilt",
+   "batch": "Spring 2026",
+   "one_liner": "Computer use agents to deploy enterprise marketing campaigns",
+   "website": "https://characterquilt.com",
+   "logo": "run2-assets/yc/logos/characterquilt.png",
+   "ar": 0.95
+  },
+  {
+   "name": "Cohesion",
+   "slug": "cohesion",
+   "batch": "Spring 2026",
+   "one_liner": "Agents that automate research for institutional investors",
+   "website": "https://cohesionplatform.com/",
+   "logo": "run2-assets/yc/logos/cohesion.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Drafted",
+   "slug": "drafted",
+   "batch": "Spring 2026",
+   "one_liner": "Design your home instantly with AI",
+   "website": "https://www.drafted.ai/",
+   "logo": "run2-assets/yc/logos/drafted.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Expanse",
+   "slug": "expanse",
+   "batch": "Spring 2026",
+   "one_liner": "Unlock wasted GPU capacity.",
+   "website": "https://expanse.sh",
+   "logo": "run2-assets/yc/logos/expanse.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Fuchsia",
+   "slug": "fuchsia",
+   "batch": "Spring 2026",
+   "one_liner": "Vanta for hardware",
+   "website": "https://getfuchsia.ai/",
+   "logo": "run2-assets/yc/logos/fuchsia.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Gravy",
+   "slug": "gravy",
+   "batch": "Spring 2026",
+   "one_liner": "Agents that move money, trade stocks, and file taxes.",
+   "website": "https://gravy.finance",
+   "logo": "run2-assets/yc/logos/gravy.png",
+   "ar": 1.0
+  },
+  {
+   "name": "HeyClicky",
+   "slug": "heyclicky",
+   "batch": "Spring 2026",
+   "one_liner": "The simplest AI interface in the world for consumers to spawn agents.",
+   "website": "https://heyclicky.com/",
+   "logo": "run2-assets/yc/logos/heyclicky.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Incandor",
+   "slug": "incandor",
+   "batch": "Spring 2026",
+   "one_liner": "Behavioral intelligence infrastructure for anti-fraud",
+   "website": "https://www.incandor.com",
+   "logo": "run2-assets/yc/logos/incandor.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Interfaze",
+   "slug": "interfaze",
+   "batch": "Spring 2026",
+   "one_liner": "AI model built for high accuracy deterministic tasks",
+   "website": "https://interfaze.ai",
+   "logo": "run2-assets/yc/logos/interfaze.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Kimpton AI",
+   "slug": "kimpton-ai",
+   "batch": "Spring 2026",
+   "one_liner": "The IDE for Investors",
+   "website": "https://kimpton.ai",
+   "logo": "run2-assets/yc/logos/kimpton-ai.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Kuli",
+   "slug": "kuli",
+   "batch": "Spring 2026",
+   "one_liner": "AI coworker for marketing teams at the largest consumer brands",
+   "website": "https://kuli.one",
+   "logo": "run2-assets/yc/logos/kuli.png",
+   "ar": 1.06
+  },
+  {
+   "name": "Limrun",
+   "slug": "limrun",
+   "batch": "Spring 2026",
+   "one_liner": "Extend cloud sandboxes with iOS, Android and more",
+   "website": "https://lim.run",
+   "logo": "run2-assets/yc/logos/limrun.png",
+   "ar": 0.95
+  },
+  {
+   "name": "Memoir",
+   "slug": "memoir",
+   "batch": "Spring 2026",
+   "one_liner": "Marketing campaigns from everything your team ships",
+   "website": "https://www.trymemoir.ai/",
+   "logo": "run2-assets/yc/logos/memoir.png",
+   "ar": 1.13
+  },
+  {
+   "name": "Mount",
+   "slug": "mount",
+   "batch": "Spring 2026",
+   "one_liner": "The AI Agent Insurance Carrier",
+   "website": "https://mount.insure",
+   "logo": "run2-assets/yc/logos/mount.png",
+   "ar": 1.0
+  },
+  {
+   "name": "OpenProse",
+   "slug": "openprose",
+   "batch": "Spring 2026",
+   "one_liner": "An open-source operating system for reliable long-running agents",
+   "website": "https://prose.md",
+   "logo": "run2-assets/yc/logos/openprose.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Pavoot",
+   "slug": "pavoot",
+   "batch": "Spring 2026",
+   "one_liner": "AI Event Manager for in-person events",
+   "website": "https://pavoot.com",
+   "logo": "run2-assets/yc/logos/pavoot.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Ploy",
+   "slug": "ploy",
+   "batch": "Spring 2026",
+   "one_liner": "Ploy turns your website into your company's growth engine.",
+   "website": "https://ploy.ai",
+   "logo": "run2-assets/yc/logos/ploy.png",
+   "ar": 1.06
+  },
+  {
+   "name": "qomplement",
+   "slug": "qomplement",
+   "batch": "Spring 2026",
+   "one_liner": "The Agentic ERP for supply chain operations",
+   "website": "https://qomplement.com",
+   "logo": "run2-assets/yc/logos/qomplement.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Result",
+   "slug": "result",
+   "batch": "Spring 2026",
+   "one_liner": "Where new internet entrepreneurs build and run their companies",
+   "website": "https://result.dev/",
+   "logo": "run2-assets/yc/logos/result.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Salesgraph",
+   "slug": "salesgraph",
+   "batch": "Spring 2026",
+   "one_liner": "Proactive revenue agents that move enterprise deals forward",
+   "website": "https://www.salesgraph.com/",
+   "logo": "run2-assets/yc/logos/salesgraph.png",
+   "ar": 1.0
+  },
+  {
+   "name": "shotwell.ai",
+   "slug": "shotwellai",
+   "batch": "Spring 2026",
+   "one_liner": "The Observability Layer for Robotics",
+   "website": "http://shotwell.ai/",
+   "logo": "run2-assets/yc/logos/shotwellai.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Standard Signal",
+   "slug": "standard-signal",
+   "batch": "Spring 2026",
+   "one_liner": "Hedge fund where AI researches and executes every trade end-to-end",
+   "website": "https://standardsignal.com",
+   "logo": "run2-assets/yc/logos/standard-signal.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Taiga",
+   "slug": "taiga",
+   "batch": "Spring 2026",
+   "one_liner": "Autonomous medical billing",
+   "website": "https://taigabilling.com",
+   "logo": "run2-assets/yc/logos/taiga.png",
+   "ar": 1.0
+  },
+  {
+   "name": "The Company Company",
+   "slug": "the-company-company",
+   "batch": "Spring 2026",
+   "one_liner": "The last agent your company will ever need.",
+   "website": "https://www.thecompany.company",
+   "logo": "run2-assets/yc/logos/the-company-company.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Twolabs",
+   "slug": "twolabs",
+   "batch": "Spring 2026",
+   "one_liner": "Humanoid robot platform for builders.",
+   "website": "https://www.twolabs.ai",
+   "logo": "run2-assets/yc/logos/twolabs.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Wato",
+   "slug": "wato",
+   "batch": "Spring 2026",
+   "one_liner": "The control point for AI agents at work.",
+   "website": "https://www.watolabs.com/",
+   "logo": "run2-assets/yc/logos/wato.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Zolvo",
+   "slug": "zolvo",
+   "batch": "Spring 2026",
+   "one_liner": "AI Back-Office Automation for Commercial Lenders",
+   "website": "https://zolvo.com/",
+   "logo": "run2-assets/yc/logos/zolvo.png",
+   "ar": 1.0
+  },
+  {
+   "name": "6thSense",
+   "slug": "6thsense",
+   "batch": "Summer 2026",
+   "one_liner": "A nervous system for physical AI",
+   "website": "https://6thsense.dev",
+   "logo": "run2-assets/yc/logos/6thsense.png",
+   "ar": 1.0
+  },
+  {
+   "name": "83 Sciences",
+   "slug": "83-sciences",
+   "batch": "Summer 2026",
+   "one_liner": "AI-native materials discovery powered by unpublished experimental data",
+   "website": "https://83sciences.ai",
+   "logo": "run2-assets/yc/logos/83-sciences.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Aktoria Robotics",
+   "slug": "aktoria-robotics",
+   "batch": "Summer 2026",
+   "one_liner": "Human as API for robots",
+   "website": "https://aktoria.com/",
+   "logo": "run2-assets/yc/logos/aktoria-robotics.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Almanac",
+   "slug": "almanac",
+   "batch": "Summer 2026",
+   "one_liner": "Self updating wiki for your coding agents",
+   "website": "https://codealmanac.com",
+   "logo": "run2-assets/yc/logos/almanac.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Async",
+   "slug": "withasync",
+   "batch": "Summer 2026",
+   "one_liner": "AI Agents for Small Businesses",
+   "website": "https://withasync.com",
+   "logo": "run2-assets/yc/logos/withasync.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Baud",
+   "slug": "baud",
+   "batch": "Summer 2026",
+   "one_liner": "AI chips for ultra-fast model training and inference",
+   "website": "https://baudlabs.ai",
+   "logo": "run2-assets/yc/logos/baud.png",
+   "ar": 0.94
+  },
+  {
+   "name": "Bloomy",
+   "slug": "bloomy",
+   "batch": "Summer 2026",
+   "one_liner": "AI-powered mastery learning for K-12",
+   "website": "https://bloomylearning.com/",
+   "logo": "run2-assets/yc/logos/bloomy.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Coasty",
+   "slug": "coasty",
+   "batch": "Summer 2026",
+   "one_liner": "The computer-use agent that doesn't break on real software. We will…",
+   "website": "http://coasty.ai/",
+   "logo": "run2-assets/yc/logos/coasty.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Control Seat",
+   "slug": "control-seat",
+   "batch": "Summer 2026",
+   "one_liner": "Control and Monitoring of Industrial Operations",
+   "website": "https://www.controlseat.com",
+   "logo": "run2-assets/yc/logos/control-seat.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Daqstra",
+   "slug": "daqstra",
+   "batch": "Summer 2026",
+   "one_liner": "AI-native orchestration for physical R&D testing",
+   "website": "https://www.daqstra.com",
+   "logo": "run2-assets/yc/logos/daqstra.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Donkey",
+   "slug": "donkey",
+   "batch": "Summer 2026",
+   "one_liner": "The AI-native trading company: China factory-direct for US importers",
+   "website": "https://donkey.trade",
+   "logo": "run2-assets/yc/logos/donkey.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Ekpa",
+   "slug": "ekpa",
+   "batch": "Summer 2026",
+   "one_liner": "Building Autonomous Research Agents for Trading",
+   "website": "https://goekpa.com/",
+   "logo": "run2-assets/yc/logos/ekpa.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Florin",
+   "slug": "florin",
+   "batch": "Summer 2026",
+   "one_liner": "The financial operating system for the companies building the future.",
+   "website": "https://florin.inc",
+   "logo": "run2-assets/yc/logos/florin.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Hop Aero",
+   "slug": "hop-aero",
+   "batch": "Summer 2026",
+   "one_liner": "Rocket cargo delivery to contested environments",
+   "website": "https://hop-aero.com",
+   "logo": "run2-assets/yc/logos/hop-aero.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Illume Labs",
+   "slug": "illume-labs",
+   "batch": "Summer 2026",
+   "one_liner": "24/7 Personal Health & Longevity Companion",
+   "website": "https://www.illumelabs.ai",
+   "logo": "run2-assets/yc/logos/illume-labs.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Insurf",
+   "slug": "insurf",
+   "batch": "Summer 2026",
+   "one_liner": "The AI-Native Decision Infrastructure for Health Insurance",
+   "website": "https://www.insurf.io",
+   "logo": "run2-assets/yc/logos/insurf.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Kebra",
+   "slug": "kebra",
+   "batch": "Summer 2026",
+   "one_liner": "Make your field service company AI-native",
+   "website": "https://kebra.ai",
+   "logo": "run2-assets/yc/logos/kebra.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Libra Robotics",
+   "slug": "libra-robotics",
+   "batch": "Summer 2026",
+   "one_liner": "Autonomous robots for solar farm construction",
+   "website": "https://www.librabots.com/",
+   "logo": "run2-assets/yc/logos/libra-robotics.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Mireye",
+   "slug": "mireye",
+   "batch": "Summer 2026",
+   "one_liner": "Infrastructure for Physical World AI Agents",
+   "website": "https://www.mireye.com/",
+   "logo": "run2-assets/yc/logos/mireye.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Nex",
+   "slug": "nex",
+   "batch": "Summer 2026",
+   "one_liner": "Turn manual workflows into AI agents",
+   "website": "https://nex.ai",
+   "logo": "run2-assets/yc/logos/nex.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Ooak Data",
+   "slug": "ooak-data",
+   "batch": "Summer 2026",
+   "one_liner": "We build the world's largest library of real-world business workflow…",
+   "website": "https://ooakdata.com/",
+   "logo": "run2-assets/yc/logos/ooak-data.png",
+   "ar": 1.52
+  },
+  {
+   "name": "Operon",
+   "slug": "operon",
+   "batch": "Summer 2026",
+   "one_liner": "Agentic data layer for manufacturing & process industries.",
+   "website": "https://operonsolutions.com/en",
+   "logo": "run2-assets/yc/logos/operon.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Palette",
+   "slug": "palette-2",
+   "batch": "Summer 2026",
+   "one_liner": "An interactive AI video generation and editing platform",
+   "website": "https://palettetechnology.com/",
+   "logo": "run2-assets/yc/logos/palette-2.png",
+   "ar": 0.99
+  },
+  {
+   "name": "Petrarch",
+   "slug": "petrarch",
+   "batch": "Summer 2026",
+   "one_liner": "Unlocking enterprise data for tomorrow's economy",
+   "website": "https://petrarch.co/",
+   "logo": "run2-assets/yc/logos/petrarch.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Prescience, Inc.",
+   "slug": "prescience-inc",
+   "batch": "Summer 2026",
+   "one_liner": "Healthcare for the age of abundant intelligence.",
+   "website": "https://www.getprescience.com/",
+   "logo": "run2-assets/yc/logos/prescience-inc.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Rapidfolio",
+   "slug": "rapidfolio",
+   "batch": "Summer 2026",
+   "one_liner": "AI for fintechs & banks",
+   "website": "https://rapidfolio.com/",
+   "logo": "run2-assets/yc/logos/rapidfolio.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Rindler",
+   "slug": "rindler",
+   "batch": "Summer 2026",
+   "one_liner": "The translation layer between AI agents and the web",
+   "website": "https://rindler.ai",
+   "logo": "run2-assets/yc/logos/rindler.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Robocurve",
+   "slug": "robocurve",
+   "batch": "Summer 2026",
+   "one_liner": "Evaluating robots in the real world.",
+   "website": "https://robocurve.org",
+   "logo": "run2-assets/yc/logos/robocurve.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Sidekick",
+   "slug": "textsidekick",
+   "batch": "Summer 2026",
+   "one_liner": "AI-powered SMS assistant for deskless workers.",
+   "website": "https://www.textsidekick.com/",
+   "logo": "run2-assets/yc/logos/textsidekick.png",
+   "ar": 1.0
+  },
+  {
+   "name": "SubVysion",
+   "slug": "subvysion",
+   "batch": "Summer 2026",
+   "one_liner": "We help contractors dig safer with 3D maps of underground…",
+   "website": "https://subvysion.com",
+   "logo": "run2-assets/yc/logos/subvysion.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Truffle",
+   "slug": "truffle",
+   "batch": "Summer 2026",
+   "one_liner": "The autonomous back-of-house for restaurants.",
+   "website": "https://usetruffle.ai/",
+   "logo": "run2-assets/yc/logos/truffle.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Understudy Labs",
+   "slug": "understudy-labs",
+   "batch": "Summer 2026",
+   "one_liner": "Effortlessly move to open weight models",
+   "website": "https://understudylabs.com/",
+   "logo": "run2-assets/yc/logos/understudy-labs.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Zomma",
+   "slug": "zomma",
+   "batch": "Summer 2026",
+   "one_liner": "Computer Use Agents for back offices in finance",
+   "website": "https://zommalabs.com",
+   "logo": "run2-assets/yc/logos/zomma.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Degla Inc",
+   "slug": "degla-inc",
+   "batch": "Fall 2026",
+   "one_liner": "The fully autonomous intelligence layer in the sky.",
+   "website": "https://degla.ai",
+   "logo": "run2-assets/yc/logos/degla-inc.png",
+   "ar": 1.5
+  },
+  {
+   "name": "GodHands",
+   "slug": "godhands",
+   "batch": "Fall 2026",
+   "one_liner": "Deterministic Computer Use Infra for AI Agents",
+   "website": "https://godhands.dev",
+   "logo": "run2-assets/yc/logos/godhands.png",
+   "ar": 1.0
+  },
+  {
+   "name": "RightNow",
+   "slug": "rightnow",
+   "batch": "Fall 2026",
+   "one_liner": "Enabling Model-Hardware Co-Design at Scale",
+   "website": "https://runinfra.ai/",
+   "logo": "run2-assets/yc/logos/rightnow.png",
+   "ar": 1.0
+  },
+  {
+   "name": "Simantic",
+   "slug": "simantic",
+   "batch": "Fall 2026",
+   "one_liner": "Firmware simulation for AI agents",
+   "website": "https://simantic.dev",
+   "logo": "run2-assets/yc/logos/simantic.png",
+   "ar": 1.0
+  }
+ ]
+}

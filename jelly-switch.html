@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Jelly Switch</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #1a1a1a; }
+  #gl { position: fixed; inset: 0; display: block; width: 100%; height: 100%; }
+  /* hover container — defines the interactive area over the track */
+  #hit {
+    position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: min(60vw, 580px); height: min(13vw, 130px);
+    border-radius: 100px; cursor: pointer; z-index: 2;
+  }
+  .hint {
+    position: fixed; left: 50%; bottom: 30px; transform: translateX(-50%); z-index: 3;
+    font: 500 11px/1 ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+    letter-spacing: .16em; text-transform: uppercase; color: #5a5a5c;
+    user-select: none; pointer-events: none; transition: opacity .5s ease;
+  }
+</style>
+</head>
+<body>
+<canvas id="gl"></canvas>
+<div id="hit"></div>
+<div class="hint" id="hint">hover the switch</div>
+
+<script type="x-shader/x-fragment" id="frag">#version 300 es
+precision highp float;
+out vec4 outColor;
+
+uniform vec2  uRes;
+uniform float uKnobX;    // knob position along the track
+uniform vec2  uSquash;   // x,z stretch factors (volume-preserving)
+uniform float uSquashY;  // y stretch factor
+uniform float uLean;     // top-lag shear
+uniform float uGlow;     // 0..1 activation
+uniform float uTime;     // seconds (for the bioluminescent pulse)
+uniform sampler2D uUnion; // cnvrt logo mask, embossed into the top surface
+
+/* ---- scene constants (world units) ---- */
+uniform float uSpan;                             // groove half-length (default 1.02; ?k= stretches for wide embeds)
+#define GROOVE_A (-uSpan)
+#define GROOVE_B (uSpan)
+const float GROOVE_R = 0.09;                     // thin slot (short vertically)
+const float GROOVE_DEPTH = 0.15;                 // a bit of height to the recess
+const vec3  KNOB_B = vec3(0.32, 0.18, 0.32);     // keycap squircle half-extents
+const float KNOB_R = 0.15;                       // knob corner radius
+const float KNOB_CY = 0.07;                      // knob center height
+const float KNOB_BOTTOM = -0.11, KNOB_FULLH = 0.40;
+const vec3  LDIR = normalize(vec3(-0.14, 1.0, -0.34));  // near top-down; shadow falls "down" the screen
+// blue bioluminescent palette (the colour lives in the LIGHT, not the body)
+const vec3  BIO_DEEP = vec3(0.02, 0.18, 0.55);
+const vec3  BIO_MID  = vec3(0.10, 0.48, 1.00);   // azure
+const vec3  BIO_CORE = vec3(0.62, 0.86, 1.00);   // light blue-white
+const float UNION_W = 0.36, UNION_H = 0.19;      // cnvrt logo size on the knob top (world units, 36:19 ~= spec)
+const vec3  PAINT_COL = vec3(0.006);              // #1a1a1a — the logo is painted flat on the surface
+
+float sdRoundBox(vec3 p, vec3 b, float r){
+  vec3 q = abs(p) - b + r;
+  return length(max(q, 0.0)) + min(max(q.x, max(q.y, q.z)), 0.0) - r;
+}
+float sdSeg(vec2 p, vec2 a, vec2 b){
+  vec2 pa = p - a, ba = b - a;
+  float h = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0);
+  return length(pa - ba * h);
+}
+float sdEllipsoid(vec3 p, vec3 r){          // iq: rounded, domed everywhere (no flat faces)
+  float k0 = length(p / r);
+  float k1 = length(p / (r * r));
+  return k0 * (k0 - 1.0) / k1;
+}
+float smin(float a, float b, float k){      // smooth union (soft blends, no hard creases)
+  float h = clamp(0.5 + 0.5 * (b - a) / k, 0.0, 1.0);
+  return mix(b, a, h) - k * h * (1.0 - h);
+}
+float smax(float a, float b, float k){ return -smin(-a, -b, k); }
+
+float mapKnob(vec3 p){
+  p.x -= uKnobX;
+  float hh = clamp((p.y - KNOB_BOTTOM) / KNOB_FULLH, 0.0, 1.0);
+  float w = hh * hh * (3.0 - 2.0 * hh);
+  p.x -= uLean * w;                                  // top lags base
+  p.x /= uSquash.x; p.z /= uSquash.y;                // stretch/squash
+  p.y = (p.y - KNOB_CY) / uSquashY + KNOB_CY;
+  vec3 q = p - vec3(0.0, KNOB_CY, 0.0);
+  float box  = sdRoundBox(q, KNOB_B, KNOB_R);            // keycap squircle (defines the shape)
+  float dome = sdEllipsoid(q, vec3(0.30, 0.22, 0.30));  // narrower + slightly taller -> gentle top curve ONLY
+  float d = smin(box, dome, 0.08);
+  return d * min(min(uSquash.x, uSquash.y), uSquashY);
+}
+float mapGround(vec3 p){
+  float ground = p.y;                               // surface at y=0
+  float chan = sdSeg(p.xz, vec2(GROOVE_A, 0.0), vec2(GROOVE_B, 0.0)) - GROOVE_R;
+  float cutter = smax(chan, -(p.y + GROOVE_DEPTH), 0.03);   // pill trench cutter (defined, slight smoothing)
+  return smax(ground, -cutter, 0.03);                       // subtract the trench — bevels stay defined
+}
+vec2 map(vec3 p){
+  float g = mapGround(p);
+  float k = mapKnob(p);
+  return (k < g) ? vec2(k, 1.0) : vec2(g, 0.0);
+}
+vec3 calcNormal(vec3 p){
+  vec2 e = vec2(0.0016, 0.0);
+  return normalize(vec3(
+    map(p + e.xyy).x - map(p - e.xyy).x,
+    map(p + e.yxy).x - map(p - e.yxy).x,
+    map(p + e.yyx).x - map(p - e.yyx).x));
+}
+float calcAO(vec3 p, vec3 n){
+  float ao = 0.0, sca = 1.0;
+  for (int i = 0; i < 5; i++){
+    float h = 0.012 + 0.11 * float(i);
+    ao += (h - map(p + n * h).x) * sca;
+    sca *= 0.7;
+  }
+  return clamp(1.0 - 1.6 * ao, 0.0, 1.0);
+}
+float softShadow(vec3 ro, vec3 rd){
+  float res = 1.0, t = 0.02;
+  for (int i = 0; i < 24; i++){
+    float h = map(ro + rd * t).x;
+    if (h < 0.001) return 0.0;
+    res = min(res, 11.0 * h / t);
+    t += clamp(h, 0.012, 0.12);
+    if (t > 5.0) break;
+  }
+  return clamp(res, 0.0, 1.0);
+}
+vec2 march(vec3 ro, vec3 rd, out float glowAcc){
+  float t = 0.0, m = -1.0; glowAcc = 0.0;
+  for (int i = 0; i < 96; i++){
+    vec3 p = ro + rd * t;
+    float dk = mapKnob(p);
+    glowAcc += 0.02 / (1.0 + dk * dk * 210.0);    // tight halo bleed near the glowing jelly
+    vec2 d = map(p);
+    if (d.x < 0.001){ m = d.y; break; }
+    t += d.x;
+    if (t > 18.0) break;
+  }
+  return vec2(t, m);
+}
+
+// --- value noise + fbm (organic internal structure) ---
+float hash(vec3 p){ p = fract(p * 0.3183099 + 0.1); p *= 17.0; return fract(p.x*p.y*p.z*(p.x+p.y+p.z)); }
+float noise(vec3 x){
+  vec3 i = floor(x), f = fract(x); f = f*f*(3.0-2.0*f);
+  return mix(mix(mix(hash(i+vec3(0,0,0)),hash(i+vec3(1,0,0)),f.x),
+                 mix(hash(i+vec3(0,1,0)),hash(i+vec3(1,1,0)),f.x),f.y),
+             mix(mix(hash(i+vec3(0,0,1)),hash(i+vec3(1,0,1)),f.x),
+                 mix(hash(i+vec3(0,1,1)),hash(i+vec3(1,1,1)),f.x),f.y),f.z);
+}
+float fbm(vec3 x){ float f=0.0, a=0.5; for(int i=0;i<3;i++){ f+=a*noise(x); x*=2.0; a*=0.5; } return f; }
+
+// local thickness: 0 at the silhouette edge .. 1 in the dense core
+float localThickness(vec3 p, vec3 N){
+  const float maxD = 0.5; float t = 0.0;
+  for (int i = 0; i < 9; i++){ float h = maxD*(float(i)+0.5)/9.0; t += clamp(-mapKnob(p - N*h)/maxD, 0.0, 1.0); }
+  return clamp(t/9.0, 0.0, 1.0);
+}
+// material path length between the surface and the light (Beer-Lambert absorption)
+float lightThick(vec3 p){
+  float th = 0.0, t = 0.05;
+  for (int i = 0; i < 5; i++){ th += max(0.0, -mapKnob(p - LDIR * t)); t += 0.08; }
+  return th;
+}
+
+// cheap track/ground colour (no AO/shadow) — used as the REFRACTED background seen through the jelly
+vec3 groundCheap(vec3 p){
+  float chan = sdSeg(p.xz, vec2(GROOVE_A, 0.0), vec2(GROOVE_B, 0.0)) - GROOVE_R;   // <0 inside the slot
+  vec3 surf  = vec3(0.014, 0.016, 0.020);                            // darker surface (outside)
+  vec3 floorC = vec3(0.0046, 0.0046, 0.005);                         // slot floor ~#121212
+  float inSlot = smoothstep(0.015, -0.02, chan);
+  vec3 col = mix(surf, floorC * (0.7 + 0.3 * smoothstep(-GROOVE_R, 0.0, chan)), inSlot);
+  col += vec3(0.24, 0.26, 0.30) * smoothstep(0.05, 0.0, abs(chan)) * (1.0 - inSlot * 0.5); // bright bevel rim -> the warp reads through the jelly
+  col += BIO_MID * uGlow * 0.28 * inSlot;                            // refracted slot catches the glow subtly (through the slit)
+  return col;
+}
+
+vec3 shadeGround(vec3 p, vec3 n){
+  float ao = calcAO(p, n);
+  // darker recessed surface — it sits UNDER the whole switch
+  vec3 base = vec3(0.0044, 0.0044, 0.0047);                      // tracker surface ~#121212
+  vec3 col = base;
+  float depthT = smoothstep(0.0, -GROOVE_DEPTH, p.y);            // 0 at surface .. 1 at the floor
+  col *= (1.0 - 0.22 * depthT);                                  // recess floor a touch darker, still ~#121212
+  // inner vertical wall (the visible "height" slab) sits in shadow — low n.y = vertical face
+  float wall = (1.0 - smoothstep(0.1, 0.5, n.y)) * smoothstep(0.1, 0.38, depthT);
+  col *= 1.0 - 0.55 * wall;
+  // the BOTTOM lip (wall curving back to the floor) catches a slight rim — NOT the top edge
+  float lip = smoothstep(0.2, 0.55, n.y) * (1.0 - smoothstep(0.78, 1.0, n.y)) * smoothstep(0.5, 0.82, depthT);
+  col += vec3(0.095, 0.10, 0.125) * lip;
+  col *= 0.85 + 0.15 * ao;                                       // gentle recess occlusion
+  // the surface catches the glow — long, gradual fade, 18% subtler
+  float gd = length(p.xz - vec2(uKnobX, 0.0));
+  col += BIO_MID * uGlow * smoothstep(1.6, 0.0, gd) * 0.59 * (1.0 - 0.5 * depthT);
+  return col;
+}
+
+vec3 shadeJelly(vec3 entry, vec3 rd, vec3 n){
+  vec3 V = -rd, L = LDIR;
+  // --- the cnvrt logo is PAINTED flat (#1a1a1a) on the top surface (sampled here, applied after shading) ---
+  float topFace = smoothstep(0.28, 0.72, n.y);
+  float paintM = 0.0;
+  vec2 luv = vec2((entry.x - uKnobX) / UNION_W, entry.z / UNION_H) + 0.5;
+  if (topFace > 0.001 && luv.x > 0.0 && luv.x < 1.0 && luv.y > 0.0 && luv.y < 1.0){
+    paintM = texture(uUnion, luv).r * topFace;
+  }
+  float density = localThickness(entry, n);
+  float wrapD   = clamp((dot(n, L) + 0.6) / 1.6, 0.0, 1.0);
+  float ao      = calcAO(entry, n);
+  float fres    = pow(1.0 - clamp(dot(n, V), 0.0, 1.0), 3.0);
+
+  // 1. REFRACTION — bend the ray through the jelly, sample the WARPED track behind it
+  const float IOR = 1.6;
+  vec3 kc = vec3(uKnobX, KNOB_CY, 0.0);
+  vec3 rr = refract(rd, n, 1.0 / IOR);
+  if (dot(rr, rr) < 1e-4) rr = rd;
+  float t2 = 0.01;
+  for (int i = 0; i < 44; i++){ float dk = mapKnob(entry + rr * t2); if (dk > 0.0) break; t2 += clamp(-dk, 0.006, 0.05); }
+  vec3 exitP = entry + rr * t2;
+  vec3 exitN = normalize(exitP - kc);                         // cheap far-side normal
+  vec3 rr2 = refract(rr, -exitN, IOR);
+  if (dot(rr2, rr2) < 1e-4) rr2 = rr;
+  float tg = max(exitP.y, 0.0) / max(-rr2.y, 0.06);           // continue to the ground plane
+  vec3 behind = groundCheap(exitP + rr2 * tg);
+  vec3 sigma = -log(vec3(0.95, 0.96, 0.97));                  // very clear -> the refraction dominates
+  vec3 interior = exp(-sigma * (t2 * 0.38));
+  vec3 col = behind * interior;                               // the warped pill track shows through the clear body
+
+  // 2. Whisper of frost — keeps a hint of jelly without hiding the warped track underneath
+  float sss      = pow(density, 1.2);
+  float topFrost = smoothstep(0.15, 0.85, n.y) * wrapD;
+  vec3  keyCol   = mix(vec3(1.0, 1.0, 1.02), BIO_MID * 1.3, uGlow * 0.45);
+  vec3  Hs       = normalize(L + n * 0.3);
+  float back     = pow(clamp(dot(V, -Hs), 0.0, 1.0), 2.5) * 1.3 + 0.08;
+  col = mix(col, col + keyCol * 0.5, topFrost * 0.02);        // minimal frost
+  col += keyCol * back * (0.12 + 0.3 * sss) * (0.45 + 0.55 * ao) * 0.025; // whisper scatter
+  float enter = pow(clamp(dot(n, L), 0.0, 1.0), 1.4);
+  float depthGrad = smoothstep(-0.22, 0.24, (entry.y - KNOB_CY));
+  col += keyCol * (enter * 0.04 + depthGrad * 0.025) * (0.4 + 0.6 * sss);
+
+  // 3. Internal BLUE emission (uGlow-gated) — ADDED, so the refraction still reads when lit
+  float fbmN  = fbm(entry * 4.0 + vec3(0.0, 0.0, uTime * 0.25));
+  float pulse = 0.9 + 0.1 * sin(uTime * 1.6 + density * 3.0);
+  // density^1.0 (was ^1.4): the exponent crushed everything but the thickest core to nearly
+  // nothing, so the jelly read as dim glass with a spot in it rather than lit from within.
+  float emit  = pow(density, 1.0) * pulse * (0.6 + 0.4 * fbmN);
+  // Keep BIO_CORE (0.62,0.86,1.00 — nearly white) confined to the very densest core. Reaching it
+  // early lightens the interior but DESATURATES it: it carries almost as much red as blue, so the
+  // jelly goes pale-blue instead of reading as lit. The glow sells itself through saturation, not
+  // brightness — so the bulk of the volume stays on BIO_MID (0.10,0.48,1.00), which puts ~10x more
+  // energy into blue than red, and only the hottest filament blows out toward white.
+  vec3  glowCol = mix(BIO_MID, BIO_CORE, smoothstep(0.55, 0.98, density));
+  // accumulated separately from `col` so ambient occlusion cannot darken it (see below)
+  // The lift goes mostly into the FLAT term (constant 0.55 raised, density weight lowered) rather
+  // than the density-driven `emit`. Pushing `emit` is what produces a hot spot in the thick middle;
+  // lifting the flat base raises the whole volume together, which is what reads as natural.
+  vec3  inner = glowCol * emit * uGlow * 12.0
+              + BIO_MID * uGlow * (0.55 + 0.55 * density) * 3.1;
+
+  // 4. Fresnel rim — frost-white idle, blue when active (suppressed on the painted logo)
+  vec3 rimCol = mix(vec3(0.82, 0.88, 1.0), BIO_MID, uGlow);
+  col += rimCol * fres * (0.22 + 0.8 * uGlow) * (1.0 - paintM);
+
+  // 5. Wet specular — NOT on the logo (the paint is matte)
+  float ndh = clamp(dot(n, normalize(L + V)), 0.0, 1.0);
+  col += vec3(1.0) * (pow(ndh, 20.0) * 0.26 + pow(ndh, 180.0) * 0.5) * (1.0 - paintM);
+  col *= 0.5 + 0.5 * ao;                             // ambient occlusion — grounds the jelly, darkens the base
+  // Emitted light is NOT occluded — it originates inside the volume. This used to be folded into
+  // `col` before the AO multiply above, so the jelly's own glow was being darkened by up to half
+  // exactly where the body is thickest, i.e. where it should be brightest. Added after instead.
+  col += inner;
+
+  // cnvrt logo PAINTED flat, matte, opaque (#1a1a1a) — applied last, over everything
+  // the arrow is matte paint, but light still lands on it — a subtle blue lift, gated by uGlow
+  //  so it only tints while the jelly is actually glowing (plus a hint of the key wrap for form)
+  vec3 paintCol = PAINT_COL + BIO_MID * uGlow * (0.16 + 0.10 * wrapD);
+  col = mix(col, paintCol, paintM);
+  return col;
+}
+
+// render one sample (premultiplied rgba); called 4x for supersampled anti-aliasing
+vec4 shadePixel(vec2 fc){
+  vec2 uv = (fc * 2.0 - uRes) / uRes.y;
+  vec3 target = vec3(0.0, -0.02, 0.0);
+  vec3 camPos = vec3(0.0, 5.6, 1.75);
+  vec3 fw = normalize(target - camPos);
+  vec3 rt = normalize(cross(fw, vec3(0.0, 1.0, 0.0)));
+  vec3 up = cross(rt, fw);
+  float ortho = 2.5 / (uRes.x / uRes.y);           // switch fills ~44% width; rest is glow margin (transparent)
+  vec3 ro = camPos + rt * uv.x * ortho + up * uv.y * ortho;
+  vec3 rd = fw;
+
+  float glowAcc;
+  vec2 res = march(ro, rd, glowAcc);
+  vec3 p = ro + rd * res.x;
+  vec3 n = calcNormal(p);
+
+  // opaque coverage: the knob + the pill track; everything else transparent
+  vec3 opaqueLin; float coverage;
+  if (res.y > 0.5){
+    opaqueLin = shadeJelly(p, rd, n); coverage = 1.0;          // knob
+  } else {
+    float chan = sdSeg(p.xz, vec2(GROOVE_A, 0.0), vec2(GROOVE_B, 0.0)) - GROOVE_R;
+    coverage = smoothstep(0.02, -0.02, chan);                  // 1 inside the pill track, soft edge
+    opaqueLin = shadeGround(p, n);
+  }
+  vec3 opaqueCol = pow(opaqueLin / (1.0 + opaqueLin), vec3(0.4545));
+
+  // glow (bloom halo + spill) — spread + elliptical (extends along the track); slightly less intense
+  float dd = length(p.xz - vec2(uKnobX, 0.0));                 // circular, close to the knob
+  // layered bloom — bright hot core -> mid -> soft outer (all pulled in tight)
+  float core  = smoothstep(0.30, 0.0,  dd);
+  float mid   = smoothstep(0.60, 0.04, dd);
+  float outer = smoothstep(0.99, 0.10, dd);
+  // Gentle overall lift. The core band is left almost alone and the gain is put into `mid`/`outer`
+  // instead: raising the core is what makes a tight bright ring around the knob, whereas extending
+  // the soft tail just makes the surface read as evenly lit.
+  float glowAmt = glowAcc * uGlow * 2.7 + uGlow * (core * 1.8 + mid * 0.9 + outer * 0.4);
+  float glowA = clamp(glowAmt * 0.92, 0.0, 1.0);
+  vec3 glowLin = BIO_MID * 4.4 * glowAmt;                      // bright (hot core rolls to white via tonemap)
+  vec3 glowCol = pow(glowLin / (1.0 + glowLin), vec3(0.4545));
+
+  // premultiplied source-over: opaque switch OVER the glow
+  float a = coverage + glowA * (1.0 - coverage);
+  vec3 rgb = opaqueCol * coverage + glowCol * glowA * (1.0 - coverage);
+  return vec4(rgb, a);
+}
+
+void main(){
+  // 4x rotated-grid supersampling — smooths the jagged silhouette / logo / track edges
+  vec4 c = shadePixel(gl_FragCoord.xy + vec2( 0.125,  0.375))
+         + shadePixel(gl_FragCoord.xy + vec2( 0.375, -0.125))
+         + shadePixel(gl_FragCoord.xy + vec2(-0.125, -0.375))
+         + shadePixel(gl_FragCoord.xy + vec2(-0.375,  0.125));
+  c *= 0.25;
+  c.rgb += ((hash(vec3(gl_FragCoord.xy, 11.0)) - 0.5) / 255.0) * smoothstep(0.0, 0.04, c.a);
+  outColor = c;
+}
+</script>
+
+<script>
+/* ============================================================
+   TUNING
+   ============================================================ */
+const CFG = {
+  leftX: -0.84, rightX: 0.84,        // knob travel — all the way to each end
+  // travel position follows this exact easing curve
+  travelDur: 0.52,                   // cubic-bezier(0.82, 0.03, 0, 0.98)
+  // jelly deformation — bouncy squash/stretch/wobble (low damping => it bounces & settles)
+  stretchF: 5.0, stretchZeta: 0.42, stretchCouple: 0.085, stretchMax: 0.26,
+  leanF: 4.4, leanZeta: 0.42, leanCouple: 0.006, leanMax: 0.24,
+  glowStart: 0.35, glowEnd: 0.9,
+  fixedDt: 1 / 240,
+};
+const IS_DEBUG = new URLSearchParams(location.search).has('debug');
+// ?k=1.43 stretches the groove + travel (knob size unchanged) — used by the footer embed to hit
+// the design's 513px-track / 110px-knob ratio. Groove half-length and travel scale together.
+const SPAN_K = parseFloat(new URLSearchParams(location.search).get('k')) || 1;
+CFG.leftX *= SPAN_K; CFG.rightX *= SPAN_K;
+// embedded hover: the parent page posts {t:'jelly',hover} so its own hit div can drive the switch
+// (the iframe itself stays pointer-events:none and never blocks surrounding UI)
+let visible = true;   // parent reports scroll visibility; default true so standalone still runs
+window.addEventListener('message', (e) => {
+  const d = e.data; if (!d || d.t !== 'jelly') return;
+  // check for presence, not truthiness — a {vis} message carries no `hover` and must not clear it
+  if ('hover' in d) hovering = !!d.hover;
+  if ('vis'   in d) visible  = !!d.vis;
+});
+if (new URLSearchParams(location.search).has('embed')) {
+  const h = document.getElementById('hint'); if (h) h.style.display = 'none';
+  document.documentElement.style.background = 'transparent';
+  document.body.style.background = 'transparent';   // asset is transparent; glow composites onto the footer
+}
+
+/* ---- GL setup ---- */
+const canvas = document.getElementById('gl');
+const gl = canvas.getContext('webgl2', { antialias: false, preserveDrawingBuffer: true, alpha: true });
+const VERT = `#version 300 es
+precision highp float;
+const vec2 P[3] = vec2[3](vec2(-1.,-1.), vec2(3.,-1.), vec2(-1.,3.));
+void main(){ gl_Position = vec4(P[gl_VertexID], 0., 1.); }`;
+function sh(type, src){ const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+  if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(s)); return s; }
+const prog = gl.createProgram();
+gl.attachShader(prog, sh(gl.VERTEX_SHADER, VERT));
+gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, document.getElementById('frag').textContent));
+gl.linkProgram(prog);
+if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) console.error(gl.getProgramInfoLog(prog));
+gl.useProgram(prog);
+const U = {
+  uRes: gl.getUniformLocation(prog, 'uRes'),
+  uKnobX: gl.getUniformLocation(prog, 'uKnobX'),
+  uSquash: gl.getUniformLocation(prog, 'uSquash'),
+  uSquashY: gl.getUniformLocation(prog, 'uSquashY'),
+  uLean: gl.getUniformLocation(prog, 'uLean'),
+  uGlow: gl.getUniformLocation(prog, 'uGlow'),
+  uTime: gl.getUniformLocation(prog, 'uTime'),
+  uUnion: gl.getUniformLocation(prog, 'uUnion'),
+  uSpan: gl.getUniformLocation(prog, 'uSpan'),
+};
+gl.uniform1f(U.uSpan, 1.02 * SPAN_K);
+
+/* ---- cnvrt logo texture (embossed into the jelly top) ---- */
+const UNION_URI = 'data:image/png;base64,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';
+const unionTex = gl.createTexture();
+gl.bindTexture(gl.TEXTURE_2D, unionTex);
+gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([0, 0, 0, 255]));
+let unionReady = false;
+const unionImg = new Image();
+unionImg.onload = () => {
+  gl.bindTexture(gl.TEXTURE_2D, unionTex);
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, unionImg);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  unionReady = true;
+};
+unionImg.src = UNION_URI;
+gl.uniform1i(U.uUnion, 0);
+function resize(){
+  const dpr = Math.min(devicePixelRatio || 1, IS_DEBUG ? 1 : 2);
+  canvas.width = Math.round(innerWidth * dpr);
+  canvas.height = Math.round(innerHeight * dpr);
+  gl.viewport(0, 0, canvas.width, canvas.height);
+}
+addEventListener('resize', resize); resize();
+
+/* ============================================================
+   PHYSICS — smooth, critically damped
+   ============================================================ */
+function spring(f, z){ return { x: 0, v: 0, w: 2 * Math.PI * f, z }; }
+function step(s, target, dt){
+  const a = -s.w * s.w * (s.x - target) - 2 * s.z * s.w * s.v;
+  s.v += a * dt; s.x += s.v * dt; return a;
+}
+// cubic-bezier easing (CSS-style), solved with Newton's method
+function cubicBezier(x1, y1, x2, y2){
+  const cx = 3 * x1, bx = 3 * (x2 - x1) - cx, ax = 1 - cx - bx;
+  const cy = 3 * y1, by = 3 * (y2 - y1) - cy, ay = 1 - cy - by;
+  const sx = t => ((ax * t + bx) * t + cx) * t;
+  const sy = t => ((ay * t + by) * t + cy) * t;
+  const dsx = t => (3 * ax * t + 2 * bx) * t + cx;
+  return x => {
+    let t = x;
+    for (let i = 0; i < 8; i++){ const e = sx(t) - x; if (Math.abs(e) < 1e-5) break; const d = dsx(t); if (Math.abs(d) < 1e-6) break; t -= e / d; }
+    return sy(Math.max(0, Math.min(1, t)));
+  };
+}
+const ease = cubicBezier(0.82, 0.03, 0.0, 0.98);
+
+const baseX = { x: CFG.leftX, v: 0 };
+const travel = { from: CFG.leftX, to: CFG.leftX, t: 1 };
+let prevV = 0;
+const stretch = spring(CFG.stretchF, CFG.stretchZeta);
+const lean = spring(CFG.leanF, CFG.leanZeta);
+let hovering = false, lastHover = false;
+let simT = 0;   // accumulated time (drives the pulse; deterministic under debug stepping)
+
+function physics(dt){
+  simT += dt;
+  // travel: retarget on hover change, then follow the bezier curve over travelDur
+  if (hovering !== lastHover){ travel.from = baseX.x; travel.to = hovering ? CFG.rightX : CFG.leftX; travel.t = 0; lastHover = hovering; }
+  travel.t = Math.min(1, travel.t + dt / CFG.travelDur);
+  const newX = travel.from + (travel.to - travel.from) * ease(travel.t);
+  const vel = (newX - baseX.x) / Math.max(dt, 1e-6);
+  const accel = (vel - prevV) / Math.max(dt, 1e-6);
+  prevV = vel; baseX.v = vel; baseX.x = newX;
+  // jelly deformation — stretch along motion (velocity), lean from acceleration; both bouncy
+  const sT = Math.max(-CFG.stretchMax, Math.min(CFG.stretchMax, vel * CFG.stretchCouple));
+  step(stretch, sT, dt);
+  lean.v += -accel * CFG.leanCouple;
+  step(lean, 0, dt);
+  lean.x = Math.max(-CFG.leanMax, Math.min(CFG.leanMax, lean.x));
+}
+
+function apply(){
+  const s = stretch.x;
+  const sx = 1 + s, syz = 1 / Math.sqrt(1 + s);
+  gl.uniform2f(U.uRes, canvas.width, canvas.height);
+  gl.uniform1f(U.uKnobX, baseX.x);
+  gl.uniform2f(U.uSquash, sx, syz);
+  gl.uniform1f(U.uSquashY, syz);
+  gl.uniform1f(U.uLean, lean.x);
+  gl.uniform1f(U.uTime, simT);
+  const p = (baseX.x - CFG.leftX) / (CFG.rightX - CFG.leftX);
+  const g = Math.max(0, Math.min(1, (p - CFG.glowStart) / (CFG.glowEnd - CFG.glowStart)));
+  gl.uniform1f(U.uGlow, g * g * (3 - 2 * g));
+}
+function render(){ apply(); gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, unionTex); gl.drawArrays(gl.TRIANGLES, 0, 3); }
+
+/* ---- physics accumulator ---- */
+let acc = 0;
+function advance(dt){
+  acc += Math.min(dt, 0.1);
+  let n = 0;
+  while (acc >= CFG.fixedDt && n < 400){ physics(CFG.fixedDt); acc -= CFG.fixedDt; n++; }
+}
+
+/* ============================================================
+   HOVER CONTAINER + LOOP
+   ============================================================ */
+const hit = document.getElementById('hit');
+const hint = document.getElementById('hint');
+let hinted = false;
+if (!IS_DEBUG){
+  hit.addEventListener('pointerenter', () => { hovering = true; if (!hinted){ hint.style.opacity = '0'; hinted = true; } });
+  hit.addEventListener('pointerleave', () => { hovering = false; });
+}
+
+if (IS_DEBUG){
+  window.__jelly = {
+    ready: false,
+    setHover: (b) => { hovering = !!b; },
+    // advance the FULL dt deterministically (no interactive frame-clamp)
+    step: (dt) => { let a = dt; while (a >= CFG.fixedDt) { physics(CFG.fixedDt); a -= CFG.fixedDt; } render(); },
+    state: () => ({ x: baseX.x, v: baseX.v, stretch: stretch.x, lean: lean.x }),
+  };
+  const tryReady = () => { if (!unionReady) { setTimeout(tryReady, 10); return; } advance(0.5); render(); window.__jelly.ready = true; };
+  tryReady();
+} else {
+  /* Demand frameloop. This shader is expensive — per sample it walks a 96-step march, a 44-step
+     refraction march, 5-sample AO, a 9-step thickness integral and 3-octave fbm, and every one of
+     those runs 4x for the rotated-grid supersampling. Rays that MISS the switch pay the full step
+     count, and most of an 828x440 frame is empty, so the idle cost is close to the worst case.
+     It lives in the footer, which is offscreen for most of a session, so rendering unconditionally
+     burned that on nothing. Now it only draws when the tab is visible AND the parent says the
+     footer is on screen. rAF stays scheduled (it is free) so resuming needs no re-arming. */
+  let last = performance.now();
+  (function loop(now){
+    requestAnimationFrame(loop);
+    // reset the clock while parked, otherwise the first frame back gets a multi-second dt and the
+    // spring integrator explodes across it
+    if (!visible || document.hidden) { last = now; return; }
+    advance((now - last) / 1000); last = now; render();
+  })(performance.now());
+}
+</script>
+</body>
+</html>
